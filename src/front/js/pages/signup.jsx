@@ -108,7 +108,7 @@ export const Signup = () => {
       navigate("/");
     }
     setAlert(true);
-    setAlertText("DNI, nombre de usuario o email ya registrados.");
+    setAlertText("Error con el registro, porfavor vuelva a intentarlo.");
   };
 
   const [alert, setAlert] = useState(false);
