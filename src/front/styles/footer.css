@@ -27,7 +27,7 @@
   color: #212529;
   border: none;
   cursor: pointer;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.3s ease-in-out;
 }
 
 .enlaces:hover {
@@ -48,7 +48,7 @@
 }
 
 .legalidad {
- color: #929394;
- text-align: justify;
- word-wrap: break-word;
+  color: #929394;
+  text-align: justify;
+  word-wrap: break-word;
 }

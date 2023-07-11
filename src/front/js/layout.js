@@ -59,14 +59,13 @@ const Layout = () => {
 
               <Route element={<Classification />} path="/classification" />
               <Route element={<Calendariov />} path="/calendario" />
-              <Route element={<Legalidad />} path="/legalidad" />
 
               <Route
                 element={<ManagerInscription />}
                 path="/manager-inscriptions"
               />
               <Route element={<AdminTrials />} path="/admin-trials" />
-
+              <Route element={<Legalidad />} path="/legalidad" />
               <Route element={<h1>Not found!</h1>} />
             </Routes>
           </div>
