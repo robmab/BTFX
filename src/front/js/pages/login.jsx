@@ -10,7 +10,7 @@ import "../../styles/signup.css";
 
 export const Login = () => {
   useEffect(() => {
-    document.title = "BTFX - Inicio de Sesión";
+    document.title = "BTXF - Inicio de Sesión";
   }, []);
 
   const navigate = useNavigate();

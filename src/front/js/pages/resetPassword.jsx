@@ -13,7 +13,7 @@ import "../../styles/signup.css";
 
 export const ResetPassword = () => {
   useEffect(() => {
-    document.title = "BTFX - Recuperar Contraseña";
+    document.title = "BTXF - Recuperar Contraseña";
   }, []);
 
   const [token, setToken] = useState(useParams().token.replaceAll("&", "."));

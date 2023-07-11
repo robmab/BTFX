@@ -12,7 +12,7 @@ import { Location } from "../component/location.jsx";
 
 export const Home = () => {
   useEffect(() => {
-    document.title = "BTFX";
+    document.title = "BTXF";
   }, []);
   const location = useLocation();
 
@@ -38,7 +38,7 @@ export const Home = () => {
         }}
         className="px-4 py-5 my-5 text-center hero"
       >
-        <h1 className="display-5 fw-bold">BTFX</h1>
+        <h1 className="display-5 fw-bold">BTXF</h1>
         <div className="col-lg-6 mx-auto">
           <p className="lead mb-4">
             Bienvenido a nuestra plataforma de inscripción de pruebas ciclistas

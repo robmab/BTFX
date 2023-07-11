@@ -15,7 +15,7 @@ import {
 
 export const Profile = () => {
   useEffect(() => {
-    document.title = "BTFX - Perfil";
+    document.title = "BTXF - Perfil";
   }, []);
 
   const navigate = useNavigate();

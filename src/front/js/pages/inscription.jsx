@@ -15,7 +15,7 @@ import { number } from "prop-types";
 export const Inscription = () => {
   const { store, actions } = useContext(Context);
   useEffect(() => {
-    document.title = "BTFX - Inscripción";
+    document.title = "BTXF - Inscripción";
   }, []);
 
   const idEvent = parseInt(useParams().idEvent);

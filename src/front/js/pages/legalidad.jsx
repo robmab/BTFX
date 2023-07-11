@@ -3,7 +3,7 @@ import { AvisoLegal } from "../component/avisoLegal.jsx";
 
 export const Legalidad = () => {
   useEffect(() => {
-    document.title = "BTFX - Legalidad";
+    document.title = "BTXF - Legalidad";
   }, []);
 
   return (

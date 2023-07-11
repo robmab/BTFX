@@ -13,7 +13,7 @@ import "../../styles/signup.css";
 
 export const RecoverPassword = () => {
   useEffect(() => {
-    document.title = "BTFX - Recuperar Contraseña";
+    document.title = "BTXF - Recuperar Contraseña";
   }, []);
 
   const { store, actions } = useContext(Context);

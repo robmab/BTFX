@@ -15,7 +15,7 @@ import tool from "../../img/tool.jpg";
 
 export const AdminTrials = () => {
   useEffect(() => {
-    document.title = "BTFX Admin - Pruebas";
+    document.title = "BTXF Admin - Pruebas";
   }, []);
 
   const navigate = useNavigate();

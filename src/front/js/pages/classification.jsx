@@ -10,14 +10,13 @@ import { faCaretUp, faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import crown from "../../img/crown.png";
 
 export const Classification = () => {
-  
   useEffect(() => {
-    document.title = "BTFX - Clasificación";
+    document.title = "BTXF - Clasificación";
   }, []);
 
   const { store } = useContext(Context);
 
-  const [point, setPoint] = useState({ [store.trials[0]?.tournament]: true }); 
+  const [point, setPoint] = useState({ [store.trials[0]?.tournament]: true });
   const [event, setEvent] = useState({});
   const [categorie, setCategorie] = useState({});
 

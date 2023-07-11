@@ -9,7 +9,7 @@ export const Calendariov = () => {
   const { store, actions } = useContext(Context);
 
   useEffect(() => {
-    document.title = "BTFX - Calendario";
+    document.title = "BTXF - Calendario";
   }, []);
 
   return (

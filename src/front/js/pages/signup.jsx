@@ -10,7 +10,7 @@ import "../../styles/signup.css";
 
 export const Signup = () => {
   useEffect(() => {
-    document.title = "BTFX - Registro";
+    document.title = "BTXF - Registro";
   }, []);
 
   const navigate = useNavigate();

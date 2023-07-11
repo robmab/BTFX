@@ -15,7 +15,7 @@ import tool from "../../img/tool.jpg";
 
 export const ManagerInscription = () => {
   useEffect(() => {
-    document.title = "BTFX Manager - Inscripciones";
+    document.title = "BTXF Manager - Inscripciones";
   }, []);
 
   const navigate = useNavigate();
