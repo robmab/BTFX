@@ -48,6 +48,15 @@ export const Inscription = () => {
   const [sexoUser, setSexoUser] = useState("");
 
   useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user?.uci_id !== null) setUciId(user.uci_id);
+    if (user?.licencia !== null) setLicencia(user.licencia);
+    if (user?.fecha_nacimiento !== null) setFechaN(user.fecha_nacimiento);
+    if (user?.federado !== null) setFederado(user.federado);
+    if (user?.sexo !== null) setSexoUser(user.sexo);
+  }, [store.user]);
+
+  useEffect(() => {
     const token = localStorage.getItem("token");
     setTok(token);
 
