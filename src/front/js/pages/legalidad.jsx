@@ -13,6 +13,4 @@ export const Legalidad = () => {
       </div>
     </Fragment>
   );
-
 };
-
