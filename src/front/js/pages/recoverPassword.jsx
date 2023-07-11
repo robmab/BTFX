@@ -4,10 +4,7 @@ import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faTriangleExclamation,
-  faCheckCircle,
-} from "@fortawesome/free-solid-svg-icons";
+import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 
 import "../../styles/signup.css";
 
@@ -31,7 +28,6 @@ export const RecoverPassword = () => {
 
   const [alert, setAlert] = useState(false);
   const [alertText, setAlertText] = useState("An error has occurred.");
-  const [alertColor, setAlertColor] = useState("red");
 
   const [email, setEmail] = useState("");
 
@@ -42,12 +38,10 @@ export const RecoverPassword = () => {
     if (resp) {
       setAlert(true);
       setAlertText("Email enviado.");
-      setAlertColor("green");
       setEmail("");
     } else {
       setAlert(true);
       setAlertText("Email no existe.");
-      setAlertColor("red");
       setEmail("");
     }
   };
@@ -71,24 +65,12 @@ export const RecoverPassword = () => {
             {/* ALERT */}
             {alert ? (
               <div
-                className={
-                  alertColor === "green"
-                    ? "alert alert-success d-flex align-items-center"
-                    : "alert alert-danger d-flex align-items-center"
-                }
+                className="alert alert-danger d-flex align-items-center"
                 role="alert"
               >
                 <FontAwesomeIcon
-                  icon={
-                    alertColor === "green"
-                      ? faCheckCircle
-                      : faTriangleExclamation
-                  }
-                  style={
-                    alertColor === "green"
-                      ? { color: "#2c511f" }
-                      : { color: "#fa0000" }
-                  }
+                  icon={faTriangleExclamation}
+                  style={{ color: "#fa0000" }}
                 />
                 <div>{alertText}</div>
               </div>

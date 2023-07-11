@@ -119,23 +119,24 @@ export const Navbar = () => {
                     Perfil
                   </Link>
                 </li>
-                {role !== "User" && (
-                  <>
-                    <hr className="dropdown-divider" />
-                    <li>
-                      <a
-                        onClick={() => {
-                          setCollapse(false);
-                          navigate("/manager-inscriptions");
-                        }}
-                        className="dropdown-item"
-                        href="#"
-                      >
-                        Administrar Inscritos
-                      </a>
-                    </li>
-                  </>
-                )}
+                {role === "Manager" ||
+                  (role === "Admin" && (
+                    <>
+                      <hr className="dropdown-divider" />
+                      <li>
+                        <a
+                          onClick={() => {
+                            setCollapse(false);
+                            navigate("/manager-inscriptions");
+                          }}
+                          className="dropdown-item"
+                          href="#"
+                        >
+                          Administrar Inscritos
+                        </a>
+                      </li>
+                    </>
+                  ))}
                 {role === "Admin" && (
                   <>
                     <li>
@@ -365,23 +366,24 @@ export const Navbar = () => {
                     Perfil
                   </a>
                 </li>
-                {role !== "User" && (
-                  <>
-                    <hr className="dropdown-divider" />
-                    <li>
-                      <a
-                        onClick={() => {
-                          setCollapse(false);
-                          navigate("/manager-inscriptions");
-                        }}
-                        className="dropdown-item"
-                        href="#"
-                      >
-                        Administrar Inscritos
-                      </a>
-                    </li>
-                  </>
-                )}
+                {role === "Manager" ||
+                  (role === "Admin" && (
+                    <>
+                      <hr className="dropdown-divider" />
+                      <li>
+                        <a
+                          onClick={() => {
+                            setCollapse(false);
+                            navigate("/manager-inscriptions");
+                          }}
+                          className="dropdown-item"
+                          href="#"
+                        >
+                          Administrar Inscritos
+                        </a>
+                      </li>
+                    </>
+                  ))}
                 {role === "Admin" && (
                   <>
                     <li>

@@ -94,7 +94,7 @@ export const Login = () => {
               </div>
             ) : null}
 
-            {/* ALERT END*/}
+            {/* ALERT END G*/}
             <div className="form-group">
               <label htmlFor="exampleInputEmail1">
                 DNI, email o nombre de usuario

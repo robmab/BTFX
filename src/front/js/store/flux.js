@@ -102,7 +102,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log(response);
           return true;
         } catch (error) {
-          console.log(error);
+          console.log(error.response.data, error.response.status);
           return false;
         }
       },

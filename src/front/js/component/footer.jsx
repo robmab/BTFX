@@ -71,21 +71,16 @@ export const Footer = () => {
                     <Link
                       className="nav-link enlaces"
                       aria-current="page"
-                      to={`/calendario`}
-                      onClick={() => {
-                        navigate("/calendario");
-                      }}
+                      to="#"
                     >
                       CALENDARIO
                     </Link>
                   </li>
                   <li className="nav-item">
                     <Link
-                      className="nav-link enlaces"
-                      to={`/inscription`}
-                      onClick={() => {
-                        navigate("/inscription");
-                      }}
+                      className="nav-link enlaces "
+                      aria-current="page"
+                      to="inscription"
                     >
                       INSCRIPCIÓN
                     </Link>
@@ -93,10 +88,8 @@ export const Footer = () => {
                   <li className="nav-item">
                     <Link
                       className="nav-link enlaces "
-                      to={`/classification`}
-                      onClick={() => {
-                        navigate("/classification");
-                      }}
+                      aria-current="page"
+                      to="#"
                     >
                       CLASIFICACIÓN
                     </Link>
