@@ -129,8 +129,10 @@ export const Footer = () => {
 };
 
 {
-  /*<p></p>
-   <nav className="d-flex navbar-expand-lg bg-body-tertiary position-static">
+
+  
+  /* <nav className="d-flex navbar-expand-lg bg-body-tertiary position-static">
+
     <div className="container-fluid">
       <ul className="navbar-nav row w-100 p-2">
         <li className="col-lg-2 ">

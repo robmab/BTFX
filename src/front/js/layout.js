@@ -60,6 +60,7 @@ const Layout = () => {
               <Route element={<Classification />} path="/classification" />
               <Route element={<Calendariov />} path="/calendario" />
 
+
               <Route
                 element={<ManagerInscription />}
                 path="/manager-inscriptions"

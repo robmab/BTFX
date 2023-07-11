@@ -27,18 +27,28 @@
   color: #212529;
   border: none;
   cursor: pointer;
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.5s ease-in-out;
 }
 
 .enlaces:hover {
   color: rgb(220, 53, 69);
   transform: scale(1.1);
 }
+.enlaces:focus {
+  color: rgb(220, 53, 69);
+  transform: scale(1.1);
+}
 
 .zoom-social {
-  transition: transform 0.4s ease-in-out;
+  transition: transform 0.6s ease-in-out;
 }
 
 .zoom-social:hover {
-  transform: scale(1.4);
+  transform: scale(0.9);
+}
+
+.legalidad {
+ color: #929394;
+ text-align: justify;
+ word-wrap: break-word;
 }
