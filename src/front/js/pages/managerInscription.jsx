@@ -15,7 +15,7 @@ import tool from "../../img/tool.jpg";
 
 export const ManagerInscription = () => {
   useEffect(() => {
-    document.title = "BTXF Manager - Inscripciones";
+    document.title = "BTFX Manager - Inscripciones";
   }, []);
 
   const navigate = useNavigate();
@@ -52,7 +52,9 @@ export const ManagerInscription = () => {
     te,
     index
   ) => {
-    console.log(dorsalInput.current);
+    /* console.log(dorsalInput.current); */
+
+    if (dors === undefined || dors === 0) return;
 
     const data = {
       user: userId,
@@ -73,6 +75,9 @@ export const ManagerInscription = () => {
     setTeam(aux3);
 
     const response = await actions.userValidation(data);
+    if (response) {
+      actions.loadInscriptions();
+    }
   };
 
   const cancelInscription = async (userId, competitionId, index) => {
@@ -80,6 +85,11 @@ export const ManagerInscription = () => {
       user: userId,
       competition: competitionId,
     };
+
+    const response = await actions.cancelInscription(data);
+    if (response) {
+      actions.loadInscriptions();
+    }
 
     const aux1 = dorsal;
     const aux2 = category;
@@ -90,8 +100,6 @@ export const ManagerInscription = () => {
     setDorsal(aux1);
     setCategory(aux2);
     setTeam(aux3);
-
-    const response = await actions.cancelInscription(data);
   };
 
   return (

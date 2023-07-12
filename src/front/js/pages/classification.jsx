@@ -196,7 +196,7 @@ export const Classification = () => {
             {Object.values(point)[0] ? (
               <>
                 <div className="hr"></div>
-                <hr />
+
                 <div className="trials">
                   {store.trials.map((item, index) => (
                     <>
@@ -226,7 +226,7 @@ export const Classification = () => {
 
             {Object.values(event)[0] && Object.values(point)[0] ? (
               <>
-                <hr />
+                <div className="hr"></div>
                 <div className="categories">
                   {store.trials.map((item) => {
                     const arr = [];
