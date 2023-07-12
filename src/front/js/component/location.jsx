@@ -34,7 +34,7 @@ export const Location = () => {
         backgroundAttachment: "scroll",
       }}
     >
-      <h1>Localizanos</h1>
+      <h1>Localízanos</h1>
       <div
         style={{
           height: "60vh",
