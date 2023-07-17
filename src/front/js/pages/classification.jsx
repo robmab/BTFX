@@ -16,7 +16,7 @@ export const Classification = () => {
 
   const { store } = useContext(Context);
 
-  const [point, setPoint] = useState({ [store.trials[0]?.tournament]: true });
+  const [tournament, setTournament] = useState({});
   const [event, setEvent] = useState({});
   const [categorie, setCategorie] = useState({});
 
@@ -26,8 +26,7 @@ export const Classification = () => {
   /* RE-SET TOURNAMENT STATE IN CASE STORE ITS STILL EMPTY */
   useEffect(() => {
     if (store.trials.length > 0) {
-      console.log("hello");
-      setPoint({ [store.trials[0].tournament]: true });
+      setTournament({ [store.trials[0].tournament]: true });
     }
   }, [store.trials]);
 
@@ -36,7 +35,7 @@ export const Classification = () => {
     const aux = [];
     store.trials.map((item) => {
       if (
-        Object.keys(point)[0] === item.tournament &&
+        Object.keys(tournament)[0] === item.tournament &&
         Object.keys(event).length === 0
       ) {
         item.runners.map((x) => {
@@ -45,7 +44,7 @@ export const Classification = () => {
             aux.push(x);
           } else {
             const index = aux.findIndex((e) => e.name === x.name);
-            const points = aux[index].points + x.points;
+            const tournaments = aux[index].tournaments + x.tournaments;
 
             aux.splice(index, 1);
 
@@ -54,14 +53,14 @@ export const Classification = () => {
             const replicaX = {};
 
             for (const i in x) {
-              if (i === "points") replicaX[i] = points;
+              if (i === "tournaments") replicaX[i] = tournaments;
               else replicaX[i] = x[i];
             }
             aux.push(replicaX);
           }
         });
       } else if (
-        Object.keys(point)[0] === item.tournament &&
+        Object.keys(tournament)[0] === item.tournament &&
         Object.keys(event)[0] === item.name &&
         Object.keys(categorie).length > 0
       ) {
@@ -71,7 +70,7 @@ export const Classification = () => {
           }
         });
       } else if (
-        Object.keys(point)[0] === item.tournament &&
+        Object.keys(tournament)[0] === item.tournament &&
         Object.keys(event)[0] === item.name &&
         Object.keys(event).length > 0
       ) {
@@ -81,9 +80,9 @@ export const Classification = () => {
       }
     });
 
-    /* SORT ARRAY BY POINTS */
+    /* SORT ARRAY BY tournamentS */
     aux.sort((a, b) => {
-      return b.points - a.points;
+      return b.tournaments - a.tournaments;
     });
 
     /* ADD NUMBER TO NAME FOR CLARITY */
@@ -99,7 +98,7 @@ export const Classification = () => {
     });
 
     setRunners(auxNumber);
-  }, [point, event, categorie]);
+  }, [tournament, event, categorie]);
 
   /* SORT FUNCTION FOR TABLE */
   const handleSort = (e, type) => {
@@ -107,9 +106,9 @@ export const Classification = () => {
     const aux = runners;
     if (sort[type] === true) {
       setSort({ [id]: false });
-      if (type === "points") {
+      if (type === "tournaments") {
         aux.sort((a, b) => {
-          return b.points - a.points;
+          return b.tournaments - a.tournaments;
         });
       } else {
         aux.sort((a, b) => {
@@ -128,9 +127,9 @@ export const Classification = () => {
     } else {
       setSort({ [id]: true });
 
-      if (type === "points") {
+      if (type === "tournaments") {
         aux.sort((a, b) => {
-          return a.points - b.points;
+          return a.tournaments - b.tournaments;
         });
       } else {
         aux.sort((a, b) => {
@@ -182,25 +181,27 @@ export const Classification = () => {
                   onClick={() => {
                     setSort({});
                     setEvent({});
-                    setPoint({ [item]: true });
+                    setTournament({ [item]: true });
                   }}
                   type="button"
                   className={
-                    point[item] ? `btn btn-dark btn-sm` : `btn btn-light btn-sm`
+                    tournament[item]
+                      ? `btn btn-dark btn-sm`
+                      : `btn btn-light btn-sm`
                   }
                 >
                   {item}
                 </button>
               ))}
             </div>
-            {Object.values(point)[0] ? (
+            {Object.values(tournament)[0] ? (
               <>
                 <div className="hr"></div>
 
                 <div className="trials">
                   {store.trials.map((item, index) => (
                     <>
-                      {item.tournament === Object.keys(point)[0] && (
+                      {item.tournament === Object.keys(tournament)[0] && (
                         <button
                           onClick={() => {
                             setSort({});
@@ -224,7 +225,7 @@ export const Classification = () => {
               </>
             ) : null}
 
-            {Object.values(event)[0] && Object.values(point)[0] ? (
+            {Object.values(event)[0] && Object.values(tournament)[0] ? (
               <>
                 <div className="hr"></div>
                 <div className="categories">
@@ -299,11 +300,14 @@ export const Classification = () => {
                         <FontAwesomeIcon icon={faCaretDown} />
                       ) : null}
                     </th>
-                    <th onClick={(e) => handleSort(e, "points")} id="points">
+                    <th
+                      onClick={(e) => handleSort(e, "tournaments")}
+                      id="tournaments"
+                    >
                       Puntos{" "}
-                      {sort?.points === true ? (
+                      {sort?.tournaments === true ? (
                         <FontAwesomeIcon icon={faCaretUp} />
-                      ) : sort?.points === false ? (
+                      ) : sort?.tournaments === false ? (
                         <FontAwesomeIcon icon={faCaretDown} />
                       ) : null}
                     </th>
@@ -321,7 +325,7 @@ export const Classification = () => {
                         <td data-title="Nombre">{item.name}</td>
                         <td data-title="Equipo">{item.team}</td>
                         <td data-title="Categoría">{item.categorie}</td>
-                        <td data-title="Puntos">{item.points}</td>
+                        <td data-title="Puntos">{item.tournaments}</td>
                       </tr>
                     );
                   })}

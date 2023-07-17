@@ -37,7 +37,10 @@ const getState = ({ getStore, getActions, setStore }) => {
           // console.log(tournaments.data, tournaments.status);
 
           const store = getStore();
-          store.trials = response.data.response;
+
+          if (response.data.response === undefined) store.trials = [];
+          else store.trials = response.data.response;
+
           store.tournaments = tournaments.data.response;
           setStore(store);
 

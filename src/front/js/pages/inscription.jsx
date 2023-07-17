@@ -41,9 +41,9 @@ export const Inscription = () => {
   const [alertText, setAlertText] = useState("An error has occurred.");
   const [alertColor, setAlertColor] = useState("red");
 
-  const [uciId, setUciId] = useState(null);
+  const [uciId, setUciId] = useState(undefined);
   const [fechaN, setFechaN] = useState("");
-  const [licencia, setLicencia] = useState(null);
+  const [licencia, setLicencia] = useState(undefined);
   const [federado, setFederado] = useState("");
   const [sexoUser, setSexoUser] = useState("");
 
@@ -156,7 +156,6 @@ export const Inscription = () => {
 
               <select
                 name="select"
-                defaultValue={""}
                 className="form-control"
                 required
                 onChange={(e) => {
@@ -234,7 +233,6 @@ export const Inscription = () => {
 
               <select
                 name="select"
-                defaultValue={""}
                 className="form-control"
                 onChange={(e) => {
                   setFederado(e.target.value);
@@ -255,7 +253,6 @@ export const Inscription = () => {
 
               <select
                 name="select"
-                defaultValue={""}
                 className="form-control"
                 required
                 onChange={(e) => {
