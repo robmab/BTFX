@@ -19,10 +19,10 @@ export const Inscription = () => {
 
   //Inputs
   const [uciId, setUciId] = useState(undefined);
-  const [fechaN, setFechaN] = useState("");
-  const [licencia, setLicencia] = useState(undefined);
-  const [federado, setFederado] = useState("");
-  const [sexoUser, setSexoUser] = useState("");
+  const [date, setDate] = useState("");
+  const [license, setLicense] = useState(undefined);
+  const [federated, setFederated] = useState("");
+  const [gender, setGender] = useState("");
 
   //Redirect in case user is not logged, and save token
   const [load, setLoad] = useState(false);
@@ -53,10 +53,10 @@ export const Inscription = () => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (user !== null) {
       setUciId(user.uci_id);
-      setLicencia(user.licencia);
-      setFechaN(user.fecha_nacimiento);
-      setFederado(user.federado);
-      setSexoUser(user.sexo);
+      setLicense(user.licencia);
+      setDate(user.fecha_nacimiento);
+      setFederated(user.federado);
+      setGender(user.sexo);
     }
   }, [store.user]);
 
@@ -65,12 +65,12 @@ export const Inscription = () => {
     e.preventDefault();
 
     const data = {
-      uciId: uciId,
-      fechaN: fechaN,
-      licencia: licencia,
-      federado: federado,
-      sexoUser: sexoUser,
       event: event,
+      uciId: uciId,
+      license: license,
+      date: date,
+      federated: federated,
+      gender: gender,
     };
 
     const resp = await actions.inscription(data, token);
@@ -178,9 +178,9 @@ export const Inscription = () => {
 
               <input
                 onChange={(e) => {
-                  setLicencia(e.target.value);
+                  setLicense(e.target.value);
                 }}
-                value={licencia}
+                value={license}
                 className="form-control"
                 type="number"
                 required
@@ -193,9 +193,9 @@ export const Inscription = () => {
 
               <input
                 onChange={(e) => {
-                  setFechaN(e.target.value);
+                  setDate(e.target.value);
                 }}
-                value={fechaN === "None" ? "" : fechaN}
+                value={date === "None" ? "" : date}
                 className="form-control"
                 type="date"
                 required
@@ -208,9 +208,9 @@ export const Inscription = () => {
 
               <select
                 onChange={(e) => {
-                  setFederado(e.target.value);
+                  setFederated(e.target.value);
                 }}
-                value={federado}
+                value={federated}
                 className="form-control"
                 required
               >
@@ -227,9 +227,9 @@ export const Inscription = () => {
 
               <select
                 onChange={(e) => {
-                  setSexoUser(e.target.value);
+                  setGender(e.target.value);
                 }}
-                value={sexoUser}
+                value={gender}
                 className="form-control"
                 required
               >

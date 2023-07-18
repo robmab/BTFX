@@ -1,10 +1,11 @@
 import React from "react";
+
+import "../../styles/alert.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTriangleExclamation,
   faCheckCircle,
 } from "@fortawesome/free-solid-svg-icons";
-import "../../styles/alert.css";
 
 export const Alert = ({ alert, alertColor, alertText }) => {
   return (

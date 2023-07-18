@@ -98,15 +98,15 @@ def signup():
             user = User(
                 email=email, password=pw_hash, name=name,
                 subname=subname, phone=None, user_name=user_name,
-                dni=dni, uci_id=None, licencia=None,
-                federado=None, sexo=None, fecha_nacimiento=None
+                dni=dni, uci_id=None, license=None,
+                federated=None, gender=None, date=None
             )
         else:
             user = User(
                 email=email, password=pw_hash, name=name,
                 subname=subname, phone=phone, user_name=user_name,
-                dni=dni, uci_id=None, licencia=None,
-                federado=None, sexo=None, fecha_nacimiento=None
+                dni=dni, uci_id=None, license=None,
+                federated=None, gender=None, date=None
             )
 
         db.session.add(user)
@@ -243,42 +243,36 @@ def inscription_user():
     try:
         current_user = get_jwt_identity()
 
-        uci_id = request.json.get("uciId", None)
-        fecha_nacimiento = request.json.get("fechaN", None)
-        licencia = request.json.get("licencia", None)
-        federado = request.json.get("federado", None)
-        sexo = request.json.get("sexoUser", None)
         event = request.json.get("event", None)
+        uci_id = request.json.get("uciId", None)
+        license = request.json.get("license", None)
+        date = request.json.get("date", None)
+        federated = request.json.get("federated", None)
+        gender = request.json.get("gender", None)
 
         user = User.query.get(current_user)
-
         event = Competition.query.filter_by(title=event).first().id
-
         inscription = Inscriptions.query.filter_by(
             user_id=current_user, competition_id=event).first()
 
         if inscription is not None:
             return jsonify({"msg": "This inscription already exist"}), 403
-        print(licencia)
+
         user.uci_id = int(uci_id)
-        user.licencia = licencia
-        user.fecha_nacimiento = fecha_nacimiento
-        user.federado = federado
-        user.sexo = sexo
+        user.license = license
+        user.date = date
+        user.federated = federated
+        user.gender = gender
 
         data = Inscriptions(
             user_id=int(current_user), competition_id=int(event)
         )
 
         db.session.add(data)
-
         db.session.commit()
-        print(data)
 
         return jsonify({"msg": "Ok",
-                        "response": user.serialize()
-                        }
-                       ), 200
+                        "response": user.serialize()}), 200
 
     except Exception as e:
         return jsonify({'error': str(e)}), 400
