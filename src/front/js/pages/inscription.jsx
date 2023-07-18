@@ -1,26 +1,43 @@
-import React, { useState, useContext, useEffect } from "react";
-import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
-
+import React, { useState, useContext, useEffect, Fragment } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faTriangleExclamation,
-  faCheckCircle,
-} from "@fortawesome/free-solid-svg-icons";
-
-import "../../styles/signup.css";
-import { number } from "prop-types";
+import { useTitle } from "../hooks/useTitle.jsx";
+import { Alert } from "../component/alert.jsx";
 
 export const Inscription = () => {
+  useTitle("BTXF - Inscripción");
+
   const { store, actions } = useContext(Context);
-  useEffect(() => {
-    document.title = "BTXF - Inscripción";
-  }, []);
-
+  const navigate = useNavigate();
   const idEvent = parseInt(useParams().idEvent);
-  const [event, setEvent] = useState("");
 
+  //Alerts
+  const [alert, setAlert] = useState(false);
+  const [alertText, setAlertText] = useState("An error has occurred.");
+  const [alertColor, setAlertColor] = useState("red");
+
+  //Inputs
+  const [uciId, setUciId] = useState(undefined);
+  const [fechaN, setFechaN] = useState("");
+  const [licencia, setLicencia] = useState(undefined);
+  const [federado, setFederado] = useState("");
+  const [sexoUser, setSexoUser] = useState("");
+
+  //Redirect in case user is not logged, and save token
+  const [load, setLoad] = useState(false);
+  const [token, setToken] = useState("");
+  useEffect(() => {
+    const t = localStorage.getItem("token");
+    setToken(t);
+
+    if (t === null) {
+      navigate("/login");
+    } else setLoad(true);
+  }, [store.user]);
+
+  //Select same event as selected in Calendar page
+  const [event, setEvent] = useState("");
   useEffect(() => {
     if (idEvent !== NaN) {
       store.trials.forEach((item) => {
@@ -31,43 +48,19 @@ export const Inscription = () => {
     }
   }, []);
 
-  const navigate = useNavigate();
-  //Redirect in case user is logged
-
-  const [tok, setTok] = useState("");
-  const [load, setLoad] = useState(false);
-
-  const [alert, setAlert] = useState(false);
-  const [alertText, setAlertText] = useState("An error has occurred.");
-  const [alertColor, setAlertColor] = useState("red");
-
-  const [uciId, setUciId] = useState(undefined);
-  const [fechaN, setFechaN] = useState("");
-  const [licencia, setLicencia] = useState(undefined);
-  const [federado, setFederado] = useState("");
-  const [sexoUser, setSexoUser] = useState("");
-
+  //Set user date in case that info exists
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (user !== null) {
-      if (user?.uci_id !== null) setUciId(user.uci_id);
-      if (user?.licencia !== null) setLicencia(user.licencia);
-      if (user?.fecha_nacimiento !== null) setFechaN(user.fecha_nacimiento);
-      if (user?.federado !== null) setFederado(user.federado);
-      if (user?.sexo !== null) setSexoUser(user.sexo);
+      setUciId(user.uci_id);
+      setLicencia(user.licencia);
+      setFechaN(user.fecha_nacimiento);
+      setFederado(user.federado);
+      setSexoUser(user.sexo);
     }
   }, [store.user]);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    setTok(token);
-
-    if (token === null) {
-      navigate("/login");
-    }
-    setLoad(true);
-  }, [store.user]);
-
+  /* FORMULARY EVENT */
   const handleFormulary = async (e) => {
     e.preventDefault();
 
@@ -80,13 +73,9 @@ export const Inscription = () => {
       event: event,
     };
 
-    const resp = await actions.inscription(data, tok);
+    const resp = await actions.inscription(data, token);
 
-    if (resp === 403) {
-      setAlert(true);
-      setAlertText(`Ya estas registrado para el evento ${event}.`);
-      setAlertColor("red");
-    }
+    //Alert Responses
 
     if (resp === 200) {
       setAlert(true);
@@ -98,7 +87,7 @@ export const Inscription = () => {
       setTimeout(() => {
         setAlert(false);
         navigate("/calendario");
-      }, "5000");
+      }, "3000");
     }
 
     if (resp === 400) {
@@ -106,11 +95,18 @@ export const Inscription = () => {
       setAlertText(`UCI ID o Licencia ya registrados.`);
       setAlertColor("red");
     }
+
+    if (resp === 403) {
+      setAlert(true);
+      setAlertText(`Ya estas registrado para el evento ${event}.`);
+      setAlertColor("red");
+    }
   };
+  /* FORMULARY EVENT END*/
 
   return (
     <div className="page-inside-wb wrapper-formulary pt-5 w-25">
-      <>
+      {load && (
         <div className="form">
           <form onSubmit={handleFormulary}>
             <div className="header-submit">
@@ -123,152 +119,127 @@ export const Inscription = () => {
             </div>
 
             <hr />
-            {/* ALERT */}
-            {alert ? (
-              <div
-                className={
-                  alertColor === "green"
-                    ? "alert alert-success d-flex align-items-center"
-                    : "alert alert-danger d-flex align-items-center"
-                }
-                role="alert"
-              >
-                <FontAwesomeIcon
-                  icon={
-                    alertColor === "green"
-                      ? faCheckCircle
-                      : faTriangleExclamation
-                  }
-                  style={
-                    alertColor === "green"
-                      ? { color: "#2c511f" }
-                      : { color: "#fa0000" }
-                  }
-                />
-                <div>{alertText}</div>
-              </div>
-            ) : null}
 
-            {/* ALERT END*/}
+            {/* ALERT*/}
+            <Alert
+              alert={alert}
+              alertColor={alertColor}
+              alertText={alertText}
+            />
 
+            {/* EVENT*/}
             <div className="form-group mb-1">
               <label>Evento</label>
 
               <select
-                name="select"
-                className="form-control"
-                required
                 onChange={(e) => {
                   setEvent(e.target.value);
                 }}
-                id="genero"
                 value={event}
+                className="form-control"
+                required
               >
+                {/* Select only and event if choosen in calendary */}
                 {idEvent === NaN ? (
                   <option hidden value=""></option>
                 ) : (
                   <option value={event}>{event}</option>
                 )}
 
-                {store.trials?.map((item, index) => (
-                  <>
+                {/* Loop all events, except the choosen one */}
+                {store.trials.map((item, index) => (
+                  <Fragment key={index}>
                     {item.id !== idEvent ? (
-                      <option key={index} value={item.name}>
-                        {item.name}
-                      </option>
+                      <option value={item.name}>{item.name}</option>
                     ) : null}
-                  </>
+                  </Fragment>
                 ))}
               </select>
             </div>
 
+            {/* UCI ID*/}
             <div className="form-group">
               <label>Uci Id</label>
 
               <input
-                required
                 onChange={(e) => {
                   setUciId(e.target.value);
                 }}
                 value={uciId}
-                type="number"
                 className="form-control"
-                id="uciId"
-                aria-describedby="emailHelp"
+                type="number"
+                required
               />
             </div>
 
+            {/* LICENSE*/}
             <div className="form-group mb-1">
               <label>Licencia</label>
 
               <input
-                required
                 onChange={(e) => {
                   setLicencia(e.target.value);
                 }}
                 value={licencia}
-                type="number"
                 className="form-control"
-                id="licencia"
+                type="number"
+                required
               />
             </div>
 
+            {/* BIRTHDAY*/}
             <div className="form-group mb-1">
               <label>Fecha de Nacimiento</label>
 
               <input
-                required
                 onChange={(e) => {
                   setFechaN(e.target.value);
                 }}
-                value={fechaN}
-                type="date"
+                value={fechaN === "None" ? "" : fechaN}
                 className="form-control"
-                id="fechaNacimiento"
+                type="date"
+                required
               />
             </div>
 
+            {/*FEDERATED*/}
             <div className="form-group mb-1">
               <label>Federado</label>
 
               <select
-                name="select"
-                className="form-control"
                 onChange={(e) => {
                   setFederado(e.target.value);
                 }}
                 value={federado}
+                className="form-control"
                 required
               >
                 <option hidden value=""></option>
 
                 <option value="Sí">Sí</option>
-
                 <option value="No">No</option>
               </select>
             </div>
 
+            {/*GENDER*/}
             <div className="form-group mb-1">
               <label>Género</label>
 
               <select
-                name="select"
-                className="form-control"
-                required
                 onChange={(e) => {
                   setSexoUser(e.target.value);
                 }}
                 value={sexoUser}
-                id="genero"
+                className="form-control"
+                required
               >
                 <option hidden value=""></option>
-
                 <option value="Hombre">Masculino</option>
-
                 <option value="Mujer">Femenino</option>
               </select>
             </div>
 
+            {/*BUTTON*/}
             <div className="footer-submit">
               <button type="submit" className={`btn btn-success`}>
                 Continuar
@@ -276,7 +247,7 @@ export const Inscription = () => {
             </div>
           </form>
         </div>
-      </>
+      )}
     </div>
   );
 };
