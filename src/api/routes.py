@@ -1,54 +1,52 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
-import os
-import json
-import datetime
-from flask import Flask, request, jsonify, url_for, Blueprint, current_app, render_template
-from api.models import db, User, Category, Club, Team, Competition, Championship, Competition_Data, Category_Competition, Inscriptions
-from api.utils import generate_sitemap, APIException
-from sqlalchemy import or_
+# import json
+# from api.utils import generate_sitemap, APIException
 
+from flask_mail import Message
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
-from flask_bcrypt import Bcrypt
-from flask_mail import Message, Mail
-from threading import Thread
-
-# import timedelta
-
+from api.models import db, User, Category, Team, Competition, Championship, Competition_Data, Inscriptions
+from flask import request, jsonify, Blueprint, current_app, render_template
+import datetime
+import os
 api = Blueprint('api', __name__)
+
+# PROFILE
 
 
 @api.route("/recoverPassword", methods=["POST"])
 def recoverPassword():
-
     try:
 
         email = request.get_json(force=True)
         url = os.getenv('FRONTEND_URL') + 'reset-password/'
 
+        # Check if email already exist
         user = User.query.filter_by(email=email).first()
-
         if user == None:
-            return jsonify({"msg": "Email no existe"}), 401
+            return jsonify({"msg": "Email doesn't exist"}), 401
 
+        # Create a token with a expire time of 1 day,
+        # and change for valid URL with replace
         expires = datetime.timedelta(hours=24)
         reset_token = create_access_token(str(user.id), expires_delta=expires)
-
         reset_token = reset_token.replace(".", "&")
 
-        msg = Message(subject='BTFX - Recuperar contraseña',
+        # Send email with the URL + Token
+        msg = Message(subject='BTXF - Recuperar contraseña',
                       sender='rob_mb@outlook.es', recipients=[email])
-
         msg.body = 'Pulsa en el link a continuación para crear una nueva contraseña: ' + \
             url + reset_token
 
+        context = {"url": url,
+                   "reset_token": reset_token}
+        msg.html = render_template(
+            template_name_or_list="recover-password.html", **context)
+
         current_app.mail.send(msg)
 
-        return jsonify({"msg": "Ok",
-                        "response": "ok"
-                        }
-                       ), 200
+        return jsonify({"msg": "Ok. Email sended"}), 200
 
     except Exception as e:
         return jsonify({'error': str(e)}), 400
@@ -88,9 +86,8 @@ def signup():
         user_name = request.json.get("username", None)
         email = request.json.get("email", None)
         password = request.json.get("password", None)
-        print(phone)
-    # #Encrypt password
 
+        # Encrypt password
         pw_hash = current_app.bcrypt.generate_password_hash(
             password).decode("utf-8")
 
