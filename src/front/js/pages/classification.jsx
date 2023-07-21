@@ -12,6 +12,8 @@ export const Classification = () => {
   useTitle("BTXF - Clasificación");
   const { store } = useContext(Context);
 
+  const [event, setEvent] = useState({});
+
   const [runners, setRunners] = useState([]);
   const [date, setDate] = useState("-");
   const [sort, setSort] = useState({});
@@ -32,6 +34,8 @@ export const Classification = () => {
             setRunners={setRunners}
             setSort={setSort}
             setDate={setDate}
+            event={event}
+            setEvent={setEvent}
           />
 
           <ClassificationTable
@@ -40,6 +44,7 @@ export const Classification = () => {
             sort={sort}
             setSort={setSort}
             date={date}
+            event={event}
           />
         </>
       ) : null}

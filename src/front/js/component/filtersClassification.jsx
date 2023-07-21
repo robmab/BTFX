@@ -3,7 +3,13 @@ import { Context } from "../store/appContext";
 
 import "../../styles/filtersClassification.css";
 
-export const FiltersClassification = ({ setSort, setRunners, setDate }) => {
+export const FiltersClassification = ({
+  setSort,
+  setRunners,
+  setDate,
+  event,
+  setEvent,
+}) => {
   const { store } = useContext(Context);
 
   const [tournament, setTournament] = useState({
@@ -13,62 +19,58 @@ export const FiltersClassification = ({ setSort, setRunners, setDate }) => {
   useEffect(() => {
     setTournament({ [store.trials[0]?.tournament]: true });
   }, [store.trials]);
-  const [event, setEvent] = useState({});
+
   const [category, setCategory] = useState({});
 
-  /* ARRAY OF RUNNERS DEPENDING OF FILTERS/STATES */
+  /* ARRAY OF RUNNERS DEPENDING OF FILTERS */
   useEffect(() => {
     const aux = [];
-    store.trials.map((item) => {
-      /* Tournaments */
-      if (
-        Object.keys(tournament)[0] === item.tournament &&
-        Object.keys(event).length === 0
-      ) {
-        setDate("-");
+
+    /* Filter trials */
+    const trials =
+      Object.entries(event).length === 0
+        ? store.trials.filter(
+            (e) => Object.keys(tournament)[0] === e.tournament
+          )
+        : store.trials.filter((e) => Object.keys(event)[0] === e.name);
+
+    /* Add runners */
+    if (trials.length > 1) {
+      setDate("-");
+      /* In case more than 1 trial, sum points*/
+      trials.map((item) => {
         item.runners.map((x) => {
-          const filter = aux.filter((y) => y.user.name === x.user.name);
-          if (filter.length === 0) {
-            aux.push(x);
-          } else {
+          if (!aux.find((e) => e.user.name === x.user.name)) aux.push(x);
+          else {
             const index = aux.findIndex((e) => e.user.name === x.user.name);
             const points = aux[index].points + x.points;
 
             aux.splice(index, 1);
-            const replicaX = {};
+            const runner = {};
 
             for (const i in x) {
-              if (i === "points") replicaX[i] = points;
-              else replicaX[i] = x[i];
+              if (i === "points") runner[i] = points;
+              else runner[i] = x[i];
             }
 
-            aux.push(replicaX);
+            aux.push(runner);
           }
         });
-      } else if (
-        /* Categories */
-        Object.keys(tournament)[0] === item.tournament &&
-        Object.keys(event)[0] === item.name &&
-        Object.keys(category).length > 0
-      ) {
-        setDate(item.date_celebration);
-        item.runners.map((x) => {
-          if (x.user.category === Object.keys(category)[0]) {
-            aux.push(x);
-          }
-        });
-      } else if (
+      });
+    } else {
+      setDate(trials[0].date_celebration);
+
+      /* Add runners */
+      trials[0].runners.map((item) => {
         /* Events */
-        Object.keys(tournament)[0] === item.tournament &&
-        Object.keys(event)[0] === item.name &&
-        Object.keys(event).length > 0
-      ) {
-        setDate(item.date_celebration);
-        item.runners.map((x) => {
-          aux.push(x);
-        });
-      }
-    });
+        if (Object.keys(category).length === 0) aux.push(item);
+        else if (
+          /* Categories */
+          item.user.category === Object.keys(category)[0]
+        )
+          aux.push(item);
+      });
+    }
 
     /* Sort array by points */
     aux.sort((a, b) => {
@@ -81,6 +83,7 @@ export const FiltersClassification = ({ setSort, setRunners, setDate }) => {
   return (
     <div className="filters">
       <div className="tournaments">
+        {/* TOURNAMENTS */}
         {store.tournaments.map((item, index) => (
           <button
             key={index}
@@ -98,11 +101,12 @@ export const FiltersClassification = ({ setSort, setRunners, setDate }) => {
           </button>
         ))}
       </div>
-      {Object.values(tournament)[0] ? (
+      {Object.values(tournament)[0] && (
         <>
           <div className="hr"></div>
 
           <div className="trials">
+            {/* EVENTS */}
             {store.trials.map((item, index) => (
               <Fragment key={index}>
                 {item.tournament === Object.keys(tournament)[0] && (
@@ -126,47 +130,48 @@ export const FiltersClassification = ({ setSort, setRunners, setDate }) => {
             ))}
           </div>
         </>
-      ) : null}
+      )}
 
-      {Object.values(event)[0] && Object.values(tournament)[0] ? (
+      {Object.values(event)[0] && Object.values(tournament)[0] && (
         <>
           <div className="categories">
+            {/* CATEGORIES */}
             {store.trials.map((item, index) => {
-              const arr = [];
+              let arr = [];
               if (item.name === Object.keys(event)[0]) {
-                item.categories.map((item) => {
-                  arr.push(item);
+                item.runners.map((x) => {
+                  if (!arr.includes(x.user.category)) arr.push(x.user.category);
                 });
               }
+              arr = arr.sort();
               return (
                 <Fragment key={index}>
-                  {item.name === Object.keys(event)[0]
-                    ? arr.map((item, index) => {
-                        return (
-                          <button
-                            onClick={() => {
-                              setCategory({ [item]: true });
-                              setSort({});
-                            }}
-                            key={index}
-                            type="button"
-                            className={
-                              category[item]
-                                ? "btn btn-category btn-dark btn-sm"
-                                : "btn btn-category btn-light btn-sm"
-                            }
-                          >
-                            {item}
-                          </button>
-                        );
-                      })
-                    : null}
+                  {item.name === Object.keys(event)[0] &&
+                    arr.map((item, index) => {
+                      return (
+                        <button
+                          onClick={() => {
+                            setCategory({ [item]: true });
+                            setSort({});
+                          }}
+                          key={index}
+                          type="button"
+                          className={
+                            category[item]
+                              ? "btn btn-category btn-dark btn-sm"
+                              : "btn btn-category btn-light btn-sm"
+                          }
+                        >
+                          {item}
+                        </button>
+                      );
+                    })}
                 </Fragment>
               );
             })}
           </div>
         </>
-      ) : null}
+      )}
     </div>
   );
 };

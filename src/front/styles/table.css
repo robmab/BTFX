@@ -1,3 +1,7 @@
+.classification svg {
+  margin-left: 0.25em;
+}
+
 .classification .table * {
   box-sizing: border-box;
 }
