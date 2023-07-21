@@ -9,18 +9,12 @@ export const FiltersClassification = ({
   setDate,
   event,
   setEvent,
+  tournament,
+  setTournament,
+  category,
+  setCategory,
 }) => {
   const { store } = useContext(Context);
-
-  const [tournament, setTournament] = useState({
-    [store.trials[0]?.tournament]: true,
-  });
-  /* RE-SET TOURNAMENT STATE IN CASE STORE ITS STILL EMPTY */
-  useEffect(() => {
-    setTournament({ [store.trials[0]?.tournament]: true });
-  }, [store.trials]);
-
-  const [category, setCategory] = useState({});
 
   /* ARRAY OF RUNNERS DEPENDING OF FILTERS */
   useEffect(() => {
@@ -58,10 +52,10 @@ export const FiltersClassification = ({
         });
       });
     } else {
-      setDate(trials[0].date_celebration);
+      setDate(trials[0]?.date_celebration);
 
       /* Add runners */
-      trials[0].runners.map((item) => {
+      trials[0]?.runners.map((item) => {
         /* Events */
         if (Object.keys(category).length === 0) aux.push(item);
         else if (
@@ -94,7 +88,7 @@ export const FiltersClassification = ({
             }}
             type="button"
             className={
-              tournament[item] ? `btn btn-dark btn-sm` : `btn btn-light btn-sm`
+              tournament[item] ? `button-78 button-78-inv` : `button-78`
             }
           >
             {item}
@@ -103,7 +97,7 @@ export const FiltersClassification = ({
       </div>
       {Object.values(tournament)[0] && (
         <>
-          <div className="hr"></div>
+          <h2 class="divider line glow" contenteditable></h2>
 
           <div className="trials">
             {/* EVENTS */}
@@ -118,9 +112,7 @@ export const FiltersClassification = ({
                     }}
                     type="button"
                     className={
-                      event[item.name]
-                        ? "btn btn-dark btn-sm"
-                        : "btn btn-light btn-sm"
+                      event[item.name] ? "button-78 button-78-inv" : "button-78"
                     }
                   >
                     {item.name}
@@ -158,8 +150,8 @@ export const FiltersClassification = ({
                           type="button"
                           className={
                             category[item]
-                              ? "btn btn-category btn-dark btn-sm"
-                              : "btn btn-category btn-light btn-sm"
+                              ? "button-78 button-78-inv"
+                              : "button-78 button-78-category"
                           }
                         >
                           {item}

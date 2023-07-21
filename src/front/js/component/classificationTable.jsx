@@ -53,7 +53,7 @@ export const ClassificationTable = ({
           <table>
             <thead>
               <tr>
-                <th id="#">#</th>
+                <th></th>
                 <th onClick={() => handleSort("name")}>
                   Nombre
                   {sort.name === true && <FontAwesomeIcon icon={faCaretUp} />}

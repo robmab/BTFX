@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useTitle } from "../hooks/useTitle.jsx";
 import { Context } from "../store/appContext";
 
@@ -12,14 +12,22 @@ export const Classification = () => {
   useTitle("BTXF - Clasificación");
   const { store } = useContext(Context);
 
+  const [tournament, setTournament] = useState({
+    [store.trials[0]?.tournament]: true,
+  });
+  /* RE-SET TOURNAMENT STATE IN CASE STORE ITS STILL EMPTY */
+  useEffect(() => {
+    setTournament({ [store.trials[0]?.tournament]: true });
+  }, [store.trials]);
   const [event, setEvent] = useState({});
+  const [category, setCategory] = useState({});
 
   const [runners, setRunners] = useState([]);
   const [date, setDate] = useState("-");
   const [sort, setSort] = useState({});
 
   return (
-    <div className="page-inside-sideband classification">
+    <div className="page-inside-wb classification">
       <div
         className="title"
         style={{
@@ -36,6 +44,10 @@ export const Classification = () => {
             setDate={setDate}
             event={event}
             setEvent={setEvent}
+            tournament={tournament}
+            setTournament={setTournament}
+            category={category}
+            setCategory={setCategory}
           />
 
           <ClassificationTable
