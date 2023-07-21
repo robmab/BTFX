@@ -1,0 +1,71 @@
+/* FILTERS */
+.classification .filters {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50em;
+}
+.classification .filters .categories {
+  text-align: center;
+}
+
+.classification {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 2.5em 0;
+}
+
+.classification .filters .btn-light {
+  border: 1px solid black;
+}
+
+.classification .filters button {
+  margin: 0 0.25em 0.25em 0.25em;
+}
+
+.classification .filters .hr {
+  margin: 0.5em 0 0.5em 0;
+  border-top: 1px solid black;
+  width: 100%;
+}
+
+.classification .filters > div {
+  text-align: center;
+}
+
+.classification .tournaments > button {
+  padding: 0.6em 0.5em;
+}
+
+.classification .categories > button {
+  padding: 0em 0.1em;
+}
+
+.classification .trials > button,
+.classification .categories > button {
+  padding: 0.1em 0.5em;
+}
+
+.classification .filters .categories {
+  margin-top: 0.5em;
+}
+
+.classification .btn-dark {
+  background-color: #38383859;
+  color: black;
+}
+
+/* RESPONSIVE */
+@media (max-width: 720px) {
+  .classification .filters {
+    width: 95%;
+  }
+}
+
+@media (min-width: 720px) and (max-width: 1000px) {
+  .classification .filters {
+    width: 95%;
+  }
+}

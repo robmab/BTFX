@@ -26,7 +26,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         if (user !== null) {
           const store = getStore();
           store.user = JSON.parse(user);
-          setStore(user);
+          setStore(store);
         }
 
         try {
@@ -38,8 +38,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
           const store = getStore();
 
-          if (response.data.response === undefined) store.trials = [];
-          else store.trials = response.data.response;
+          store.trials = response.data.response;
 
           store.tournaments = tournaments.data.response;
           setStore(store);

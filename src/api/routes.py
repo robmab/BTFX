@@ -56,18 +56,20 @@ def recoverPassword():
 @jwt_required()
 def resetPassword():
     try:
+        # Encrypt
         password = request.get_json(force=True)
         pw_hash = current_app.bcrypt.generate_password_hash(
             password).decode("utf-8")
 
-        current_user = get_jwt_identity()
+        # Get User with token
+        current_user_id = get_jwt_identity()
+        user = User.query.get(current_user_id)
 
-        user = User.query.get(current_user)
-
+        # Edit password
         user.password = pw_hash
         db.session.commit()
 
-        return jsonify({"msg": "ok"}), 200
+        return jsonify({"msg": "Ok. Password reseted"}), 200
 
     except Exception as e:
         return jsonify({'error': str(e)}), 400
@@ -78,7 +80,6 @@ def resetPassword():
 @api.route('/signup', methods=['POST'])
 def signup():
     try:
-
         dni = request.json.get("dni", None)
         name = request.json.get("name", None)
         subname = request.json.get("subName", None)
@@ -91,25 +92,16 @@ def signup():
         pw_hash = current_app.bcrypt.generate_password_hash(
             password).decode("utf-8")
 
-        if phone == "":
-            user = User(
-                email=email, password=pw_hash, name=name,
-                subname=subname, phone=None, user_name=user_name,
-                dni=dni, uci_id=None, license=None,
-                federated=None, gender=None, date=None
-            )
-        else:
-            user = User(
-                email=email, password=pw_hash, name=name,
-                subname=subname, phone=phone, user_name=user_name,
-                dni=dni, uci_id=None, license=None,
-                federated=None, gender=None, date=None
-            )
+        # Add user
+        user = User(
+            email=email, password=pw_hash, name=name,
+            subname=subname, phone=None if phone == "" else phone, user_name=user_name, dni=dni
+        )
 
         db.session.add(user)
         db.session.commit()
 
-        return jsonify({'msg': "Ok. User created :)"}), 200
+        return jsonify({'msg': "Ok. User created)"}), 200
 
     except Exception as e:
         return jsonify({'error': str(e)}), 400
@@ -123,9 +115,9 @@ def login():
         password = request.json.get("password", None)
         remember = request.json.get("remember", None)
 
+        # Check if user exist
         user = User.query.filter((User.email == first_field) | (
             User.dni == first_field) | (User.user_name == first_field)).first()
-
         if user is None:
             return jsonify({"msg": "El usuario no fue encontrado."}), 401
 
@@ -135,18 +127,13 @@ def login():
         if not check_password:
             return jsonify({"msg": "Incorrect password"}), 401
 
-        if remember:
-            access_token = create_access_token(
-                identity=user.id, expires_delta=False)
-        else:
-            access_token = create_access_token(
-                identity=user.id, expires_delta=datetime.timedelta(days=1))
+        # Create token that expires in 1 day or never depend of remember
+        access_token = create_access_token(
+            identity=user.id, expires_delta=False if remember else datetime.timedelta(days=1))
 
         return jsonify({"msg": "Ok",
                         "token": access_token,
-                        "user": user.serialize()
-                        }
-                       ), 200
+                        "user": user.serialize()}), 200
 
     except Exception as e:
         return jsonify({'error': str(e)}), 400
@@ -164,12 +151,15 @@ def edit_profile():
         user_name = request.json.get("username", None)
         email = request.json.get("email", None)
 
+        # Get current user
         current_user = get_jwt_identity()
         user = User.query.get(current_user)
 
+        # Check User exist
         if user == None:
             return jsonify({"msg": "User not found"}), 404
 
+        # Edit User
         user.dni = dni
         user.name = name
         user.subname = subname
@@ -188,46 +178,13 @@ def edit_profile():
 
 @api.route("/trials", methods=["GET"])
 def trials():
-
     try:
-
-        def query_trials(item):
-            obj = item.serialize()
-            # CONVERT TIME AND DATE TO STRING FOR JSONIFY
-            for key in obj:
-                if isinstance(obj[key], datetime.date) or isinstance(obj[key], datetime.time):
-                    obj[key] = str(obj[key])
-
-            # ADD RUNNERS TO RESPONSE
-            runners = list(map(lambda item: item.serialize(), Competition_Data.query.filter_by(
-                competition_id=obj["id"]).all()))
-
-            run = []
-            for x in runners:
-                aux = {}
-                aux["name"] = x["user"]["name"]
-                aux["team"] = x["user"]["team"]["name"] if x["user"]["team"] != None else x["user"]["team"]
-
-                aux["points"] = x["points"]
-                aux["categorie"] = x["user"]["category"]["name"] if x["user"]["category"] != None else x["user"]["category"]
-                run.append(aux)
-
-            obj["runners"] = run
-
-            return obj
-
+        #Get trials
         trials = list(
-            map(query_trials, Competition.query.all()))
-
-        if not trials:
-            # No content
-            return jsonify({"msg": "No existen torneos",
-                            "response": []}), 204
+            map(lambda item: item.serialize(), Competition.query.all()))
 
         return jsonify({"msg": "Ok",
-                        "response": trials
-                        }
-                       ), 200
+                        "response": trials if trials else []}), 200
 
     except Exception as e:
         return jsonify({'error': str(e)}), 400

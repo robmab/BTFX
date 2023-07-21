@@ -59,8 +59,8 @@ class User(db.Model):
             "role": self.role,
             "rider": self.rider,
 
-            "category": category.serialize() if category != None else category,
-            "team": team.serialize() if team != None else team
+            "category": None if category is None else category.name,
+            "team": None if team is None else team.name
 
         }
 
@@ -182,12 +182,25 @@ class Competition(db.Model):
         return f'<Competition {self.title}, {self.id}>'
 
     def serialize(self):
-
+        # Championship
         championship = Championship.query.get(self.championship_id)
 
+        # Categories
         aux = Category_Competition.query.filter_by(
             competition_id=self.id).all()
         categories = list(map(lambda item: item.serialize()["category"], aux))
+
+        # Runners | We seralize all less competition for evade infinite loop.
+        def handleRunners(item):
+            aux = {"id": item.id,
+                   "dorsal": item.dorsal,
+                   "time": str(item.time),
+                   "points": item.points,
+                   "user": item.user.serialize()}
+            return aux
+
+        runners = list(map(handleRunners, Competition_Data.query.filter_by(
+            competition_id=self.id).all()))
 
         return {
             "id": self.id,
@@ -200,8 +213,10 @@ class Competition(db.Model):
             "organizer": self.organizer,
             "participation_limit": self.participation_limit,
             "email_incidents": self.email_incidents,
+
             "categories": categories,
-            "tournament": championship.title if championship != None else championship
+            "tournament": championship.title if championship != None else championship,
+            "runners": runners
         }
 
 
@@ -248,8 +263,8 @@ class Competition_Data (db.Model):
             "time": str(self.time),
             "points": self.points,
 
-            "user": user.serialize() if user != None else user,
-            "competition": competition.serialize() if competition != None else competition,
+            "user": user.serialize(),
+            "competition": competition.serialize()
         }
 
 
