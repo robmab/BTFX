@@ -1,15 +1,19 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useTitle } from "../hooks/useTitle.jsx";
 import { Context } from "../store/appContext";
+
+import { useTitle } from "../hooks/useTitle.jsx";
+import { useParallax } from "../hooks/useParallax.jsx";
 
 import { ClassificationTable } from "../component/classificationTable.jsx";
 import { FiltersClassification } from "../component/filtersClassification.jsx";
-import "../../styles/classification.css";
 
-import crown from "../../img/crown.png";
+import "../../styles/classification.css";
+import classification from "../../img/clasification.jpg";
 
 export const Classification = () => {
   useTitle("BTXF - Clasificación");
+  useParallax(".title");
+
   const { store } = useContext(Context);
 
   const [tournament, setTournament] = useState({
@@ -29,10 +33,8 @@ export const Classification = () => {
   return (
     <div className="page-inside-wb classification">
       <div
+        style={{ backgroundImage: `url(${classification})` }}
         className="title"
-        style={{
-          backgroundImage: `url(${crown})`,
-        }}
       >
         <h1>Clasificación</h1>
       </div>

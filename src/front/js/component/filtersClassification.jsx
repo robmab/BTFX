@@ -97,7 +97,7 @@ export const FiltersClassification = ({
       </div>
       {Object.values(tournament)[0] && (
         <>
-          <h2 class="divider line glow" contenteditable></h2>
+          <hr className="pill"></hr>
 
           <div className="trials">
             {/* EVENTS */}
