@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router";
 
-export const useParallax = (div) => {
+export const useParallax = (div, y) => {
   useEffect(() => {
     document.querySelector("body").onscroll = () => {
-      const scrolltotop = document.scrollingElement.scrollTop;
+      let scrolltotop = document.scrollingElement.scrollTop;
+      if (y) scrolltotop -= y * 2;
       const target1 = document.querySelector(div);
       const xvalue = "center";
       const factor = 0.5;

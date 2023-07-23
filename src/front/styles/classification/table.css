@@ -84,7 +84,7 @@
   display: block;
   padding: 10px;
   text-align: center;
-  color: #b8c4d2;
+  color: #8c96a1;
 }
 
 .classification .table .button {
@@ -205,12 +205,7 @@
   }
 
   .classification .table tfoot th {
-    display: block;
-    padding: 0px;
-    text-align: center;
-    color: #b8c4d2;
     font-size: 19px !important;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.732);
   }
 }
 

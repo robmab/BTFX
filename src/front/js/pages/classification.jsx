@@ -7,7 +7,7 @@ import { ClassificationTable } from "../component/Classification/classificationT
 import { FiltersClassification } from "../component/Classification/classificationFilters.jsx";
 
 import classification from "../../img/clasification.jpg";
-import "../../styles/classification.css";
+import "../../styles/classification/classification.css";
 
 export const Classification = () => {
   useTitle("BTXF - Clasificación");

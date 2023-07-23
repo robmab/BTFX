@@ -1,7 +1,7 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
 import { Context } from "../../store/appContext";
 
-import "../../../styles/filtersClassification.css";
+import "../../../styles/classification/filtersClassification.css";
 
 export const FiltersClassification = ({
   setSort,

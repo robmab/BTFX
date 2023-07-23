@@ -7,12 +7,21 @@ import logo from "../../img/BTXF-notext.png";
 import "../../styles/navbar.css";
 
 import { useDimensions } from "../hooks/useDimensions.jsx";
+import { useScroll } from "../hooks/useScroll.jsx";
 
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
   //CAPTURE WIDTH AND HEIGHT WHEN ZOOM IN/OUT
   const dimensions = useDimensions();
+  const scroll = useScroll();
   const navigate = useNavigate();
+
+  /* Track if Scroll its on top screen */
+  const [topScreen, setTopScreen] = useState(false);
+  useEffect(() => {
+    if (scroll !== 0) setTopScreen(false);
+    else setTopScreen(true);
+  }, [scroll]);
 
   const [logged, setLogged] = useState(false);
   const [collapse, setCollapse] = useState(false);
@@ -36,7 +45,11 @@ export const Navbar = () => {
   }, [store.user]);
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav
+      className={`${
+        topScreen ? null : "navbar-opacity"
+      } navbar navbar-expand-lg navbar-light bg-light`}
+    >
       <div className="container-fluid">
         <Link
           onClick={() => {

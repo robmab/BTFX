@@ -1,6 +1,6 @@
 import React from "react";
 
-import "../../../styles/table.css";
+import "../../../styles/classification/table.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretUp, faCaretDown } from "@fortawesome/free-solid-svg-icons";

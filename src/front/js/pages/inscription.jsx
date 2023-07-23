@@ -1,9 +1,13 @@
 import React, { useState, useContext, useEffect, Fragment } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useTitle } from "../hooks/useTitle.jsx";
 import { Context } from "../store/appContext";
 
-import { useTitle } from "../hooks/useTitle.jsx";
+import { TitleHero } from "../component/titleHero.jsx";
 import { Alert } from "../component/alert.jsx";
+import inscription from "../../img/inscription.jpg";
+
+import "../../styles/formulary.css";
 
 export const Inscription = () => {
   useTitle("BTXF - Inscripción");
@@ -53,10 +57,10 @@ export const Inscription = () => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (user !== null) {
       setUciId(user.uci_id);
-      setLicense(user.licencia);
-      setDate(user.fecha_nacimiento);
-      setFederated(user.federado);
-      setGender(user.sexo);
+      setLicense(user.license);
+      setDate(user.date);
+      setFederated(user.federated);
+      setGender(user.gender);
     }
   }, [store.user]);
 
@@ -105,16 +109,17 @@ export const Inscription = () => {
   /* FORMULARY EVENT END*/
 
   return (
-    <div className="page-inside-wb wrapper-formulary pt-5 w-25">
+    <div className="page-inside-wb  pt-5 w-25">
+      <TitleHero img={inscription} title={"Inscripción"} y={"110"} />
       {load && (
-        <div className="form">
+        <div className="wrapper-formulary">
           <form onSubmit={handleFormulary}>
             <div className="header-submit">
-              <h1>INSCRIPCIÓN</h1>
               <div className="subtitle-submit d-flex">
-                {/* <h6>
-                  Recuerda que puedes ver tus inscripciones desde tu perfil.
-                </h6> */}
+                <h6>
+                  Elige la prueba a la que quieres inscribirte. recuerda que
+                  todos los datos son obligatorios.
+                </h6>
               </div>
             </div>
 
