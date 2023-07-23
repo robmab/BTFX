@@ -1,7 +1,7 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
-import { Context } from "../store/appContext";
+import { Context } from "../../store/appContext";
 
-import "../../styles/filtersClassification.css";
+import "../../../styles/filtersClassification.css";
 
 export const FiltersClassification = ({
   setSort,
@@ -30,7 +30,7 @@ export const FiltersClassification = ({
 
     /* Add runners */
     if (trials.length > 1) {
-      setDate("-");
+      setDate("");
       /* In case more than 1 trial, sum points*/
       trials.map((item) => {
         item.runners.map((x) => {

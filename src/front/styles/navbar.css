@@ -3,7 +3,7 @@
 } */
 
 .navbar {
-  background: rgb(252, 249, 248) !important;
+  background: rgba(252, 249, 248, 1) !important;
   box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.375);
   border-bottom: 1px solid #8b8585ab;
 
@@ -12,6 +12,7 @@
 
   top: 0;
   z-index: 10;
+  backdrop-filter: blur(2px);
 }
 
 .navbar-collapse ul {
