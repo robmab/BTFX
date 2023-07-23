@@ -110,7 +110,7 @@ export const Inscription = () => {
 
   return (
     <div className="page-inside-wb  pt-5 w-25">
-      <TitleHero img={inscription} title={"Inscripción"} y={"110"} />
+      <TitleHero img={inscription} title={"Inscripción"} y={"220"} />
       {load && (
         <div className="wrapper-formulary">
           <form onSubmit={handleFormulary}>

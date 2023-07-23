@@ -21,6 +21,7 @@ export const Navbar = () => {
   useEffect(() => {
     if (scroll !== 0) setTopScreen(false);
     else setTopScreen(true);
+    actions.navbar(true);
   }, [scroll]);
 
   const [logged, setLogged] = useState(false);
@@ -47,7 +48,7 @@ export const Navbar = () => {
   return (
     <nav
       className={`${
-        topScreen ? null : "navbar-opacity"
+        topScreen && !collapse ? null : "navbar-opacity"
       } navbar navbar-expand-lg navbar-light bg-light`}
     >
       <div className="container-fluid">
@@ -176,10 +177,11 @@ export const Navbar = () => {
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
+          data-bs-target={dimensions.width < 1000 && "#navbarSupportedContent"}
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
+          style={scroll === 0 ? {} : { backgroundColor: " rgba(0, 0, 0, 0)" }}
         >
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -193,9 +195,16 @@ export const Navbar = () => {
                   navigate("/calendario");
                 }}
                 data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent"
+                data-bs-target={
+                  dimensions.width < 1000 && "#navbarSupportedContent"
+                }
                 className="nav-link active"
                 aria-current="page"
+                style={
+                  scroll === 0 && dimensions.width > 1000
+                    ? { color: "white", textShadow: "2px 2px 2px black" }
+                    : {}
+                }
               >
                 Calendario
               </Link>
@@ -208,9 +217,16 @@ export const Navbar = () => {
                   navigate("/inscription");
                 }}
                 data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent"
+                data-bs-target={
+                  dimensions.width < 1000 && "#navbarSupportedContent"
+                }
                 className="nav-link active"
                 aria-current="page"
+                style={
+                  scroll === 0 && dimensions.width > 1000
+                    ? { color: "white", textShadow: "2px 2px 2px black" }
+                    : {}
+                }
               >
                 Inscripción
               </Link>
@@ -223,9 +239,16 @@ export const Navbar = () => {
                   navigate("/classification");
                 }}
                 data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent"
+                data-bs-target={
+                  dimensions.width < 1000 && "#navbarSupportedContent"
+                }
                 className="nav-link active"
                 aria-current="page"
+                style={
+                  scroll === 0 && dimensions.width > 1000
+                    ? { color: "white", textShadow: "2px 2px 2px black" }
+                    : {}
+                }
               >
                 Clasificación
               </Link>

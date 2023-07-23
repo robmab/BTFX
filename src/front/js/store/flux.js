@@ -19,6 +19,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       categories: [],
       teams: [],
       eventResults: [],
+      navbar: false,
     },
     actions: {
       firstLoad: async () => {
@@ -324,6 +325,12 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log(error);
           return false;
         }
+      },
+      navbar: (navbar) => {
+        const store = getStore();
+        if (navbar) store.navbar = true;
+        else store.navbar = false;
+        setStore(store);
       },
     },
   };

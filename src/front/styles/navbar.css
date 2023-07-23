@@ -14,16 +14,22 @@
   z-index: 10;
   backdrop-filter: blur(2px);
 
-  -webkit-transition: background-color 100ms linear;
-  -ms-transition: background-color 100ms linear;
-  transition: background-color 100ms linear;
+  -webkit-transition: background-color 150ms linear;
+  -ms-transition: background-color 150ms linear;
+  transition: background-color 150ms linear;
 }
 
 .navbar-opacity {
   background: rgb(252, 249, 248) !important;
-  -webkit-transition: background-color 100ms linear;
-  -ms-transition: background-color 100ms linear;
-  transition: background-color 100ms linear;
+
+  -webkit-transition: background-color 150ms linear;
+  -ms-transition: background-color 150ms linear;
+  transition: background-color 150ms linear;
+}
+
+.navbar-text-white {
+  color: white !important;
+  text-shadow: 1px 1px 1px black !important;
 }
 
 .navbar-collapse ul {
@@ -65,7 +71,7 @@
 }
 
 .navbar li > a {
-  text-shadow: 1px 1px 1px white !important;
+  text-shadow: 1px 1px 1px white;
 }
 
 /* PROFILE */
@@ -138,7 +144,14 @@
 
   .navbar .nav-item .dropdown-toggle {
     margin-left: 0;
+    background-color: rgb(rgb(171, 80, 80));
   }
+}
+
+.navbar-toggler {
+  background-color: rgba(237, 237, 237, 0.79);
+  color: rgb(255, 252, 252);
+  border-color: 15px solid rgb(187, 44, 44) !important;
 }
 
 @media (min-width: 720px) and (max-width: 1000px) {
