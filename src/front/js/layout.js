@@ -39,7 +39,6 @@ const Layout = () => {
         <ScrollToTop>
           <Navbar />
           <div
-            style={{ backgroundImage: `url(${background})` }}
             className="page-wrapper"
           >
             <Routes>
