@@ -2,18 +2,18 @@ import React, { Fragment } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import legal from "../../img/avisolegal.png";
 
-export const AvisoLegal = (props) => {
+export const AvisoLegal = () => {
   return (
     <Fragment>
-      <div className="container-fluid rounded-5 justify-content-center rounded-5">
+      <div className="container-fluid rounded-5 justify-content-center rounded-5 mt-5 page-inside-wb">
         <ul
-          className="nav nav-pills mb-3 justify-content-center mt-2 p-2"
+          className="nav nav-pills mb-3 justify-content-center mt-2 p-2 gap-1"
           id="pills-tab"
           role="tablist"
         >
           <li className="nav-item" role="presentation">
-            <button
-              className="nav-link active"
+            <Link
+              className="nav-link active bg-danger text-white"
               id="pills-home-tab"
               data-bs-toggle="pill"
               data-bs-target="#pills-home"
@@ -23,11 +23,11 @@ export const AvisoLegal = (props) => {
               aria-selected="true"
             >
               Aviso Legal
-            </button>
+            </Link>
           </li>
           <li className="nav-item" role="presentation">
             <button
-              className="nav-link"
+              className="nav-link bg-danger text-white"
               id="pills-profile-tab"
               data-bs-toggle="pill"
               data-bs-target="#pills-profile"
@@ -41,7 +41,7 @@ export const AvisoLegal = (props) => {
           </li>
           <li className="nav-item" role="presentation">
             <button
-              className="nav-link"
+              className="nav-link bg-danger text-white"
               id="pills-contact-tab"
               data-bs-toggle="pill"
               data-bs-target="#pills-contact"

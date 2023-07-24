@@ -50,10 +50,17 @@ export const Navbar = () => {
     };
     window.addEventListener("resize", handleResize);
     window.addEventListener("load", handleResize);
+  
+    window.addEventListener("scroll", function() {
+
+      const navP = document.querySelector(".navbar");
+      navP.classList.toggle("menu-scrolled", window.scrollY > 0);
+    });
+  
   }, []);
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg  ">
       <div className="container-fluid">
         <Link
           onClick={() => {
@@ -251,12 +258,12 @@ export const Navbar = () => {
             <>
               <button
                 type="button"
-                className="btn btn-success login-mb"
+                className="btn btn-success login-mb badge rounded-pill text-bg-dark bg-dark border-0 fs-6 text-white bg-dark border-0 transiciones "
                 onClick={() => {
                   setShowModal(!showModal);
                 }}
               >
-                Inicio
+                Inicio Sesion
               </button>
 
               {showModal && <ModalLogin setShowModal={setShowModal} />}
@@ -279,12 +286,12 @@ export const Navbar = () => {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"><i className="fa-solid fa-bars py-1"></i></span>
         </button>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0 border-0 text-white  text-uppercase fw-bold ">
+            <li className="nav-item ">
               <Link
                 onClick={() => {
                   setCollapse(false);
@@ -292,14 +299,14 @@ export const Navbar = () => {
                 }}
                 data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent"
-                className="nav-link active"
+                className="nav-link text-white fw-bold transiciones"
                 aria-current="page"
               >
                 Calendario
               </Link>
             </li>
 
-            <li className="nav-item">
+            <li className="nav-item ">
               <Link
                 onClick={() => {
                   setCollapse(false);
@@ -307,14 +314,14 @@ export const Navbar = () => {
                 }}
                 data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent"
-                className="nav-link active"
+                className="nav-link text-white transiciones fw-bold transiciones"
                 aria-current="page"
               >
                 Inscripción
               </Link>
             </li>
 
-            <li className="nav-item">
+            <li className="nav-item ">
               <Link
                 onClick={() => {
                   setCollapse(false);
@@ -322,7 +329,7 @@ export const Navbar = () => {
                 }}
                 data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent"
-                className="nav-link active"
+                className="nav-link active text-white  border-0 fw-bold transiciones"
                 aria-current="page"
               >
                 Clasificación
@@ -334,7 +341,7 @@ export const Navbar = () => {
           logged ? (
             <li className="nav-item dropdown">
               <a
-                className="nav-link dropdown-toggle active"
+                className="nav-link dropdown-toggle "
                 href="#"
                 id="navbarDropdown"
                 role="button"
@@ -499,7 +506,7 @@ export const Navbar = () => {
                   setShowModal(!showModal);
                 }}
                 type="button"
-                className="btn btn-success login-dk"
+                className="btn btn-success login-dk badge rounded-pill text-bg-dark bg-dark border-0 transiciones fs-6"
               >
                 Iniciar Sesión
               </button>

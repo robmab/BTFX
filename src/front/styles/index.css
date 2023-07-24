@@ -4,6 +4,10 @@
 
 * {
   font-family: "Roboto";
+  
+}
+body{
+  background: linear-gradient(90deg, rgba(32,13,14,1) 20%, rgba(179,18,23,1) 90%);
 }
 
 .page-wrapper {

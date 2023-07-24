@@ -115,12 +115,12 @@ export const Signup = () => {
   const [alertText, setAlertText] = useState("An error has occurred.");
 
   return (
-    <div className="page-inside-wb wrapper-formulary pt-5 w-25">
+    <div className="page-inside-wb wrapper-formulary pt-5 w-25 mt-5">
       <>
         <div className="form">
           <form onSubmit={handleFormulary}>
             <div className="header-submit">
-              <h1>Registro</h1>
+              <h1 className="fw-bold fs-1 fst-italic">Registro</h1>
               <div className="subtitle-submit d-flex">
                 <h6>¿Ya tienes una cuenta?</h6>
                 <Link to={`/login`}>Inicia Sesión</Link>
@@ -264,7 +264,7 @@ export const Signup = () => {
             </div>
 
             <div className="footer-submit">
-              <button type="submit" className={`btn btn-success`}>
+              <button type="submit" className={`btn btn-danger`}>
                 Registrarse
               </button>
             </div>

@@ -105,7 +105,7 @@ export const Inscription = () => {
   /* FORMULARY EVENT END*/
 
   return (
-    <div className="page-inside-wb wrapper-formulary pt-5 w-25">
+    <div className="page-inside-wb wrapper-formulary pt-5 w-25 mt-5">
       {load && (
         <div className="form">
           <form onSubmit={handleFormulary}>

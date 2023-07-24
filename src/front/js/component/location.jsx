@@ -18,42 +18,75 @@ export const Location = () => {
     zoom: 15,
   };
   return (
-    <div
-      className="location"
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.2),
-        rgba(0, 0, 0, 0.2)),url(${location})`,
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "bottom",
-        backgroundSize: "cover",
-        backgroundAttachment: "scroll",
-      }}
-    >
-      <h1>Localízanos</h1>
+    <>
       <div
+        className="location bak-dg2"
         style={{
-          height: "60vh",
-          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.2),
+          rgba(0, 0, 0, 0.2)),url(${location})`,
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "bottom",
+          backgroundSize: "cover",
+          backgroundAttachment: "scroll",
         }}
       >
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: "AIzaSyAnIvuew8skXijw_KBeIo4vZkY4JCV80oQ" }}
-          defaultCenter={defaultProps.center}
-          defaultZoom={defaultProps.zoom}
-          yesIWantToUseGoogleMapApiInternals
+        <div className="row d-flex justify-content-center gap-5 fs-2 fw-bold  bak-dg">
+          <div className="col-auto">Dirección
+            <div className="row"> 
+              <p className="fs-6 fw-normal"> 
+                
+                Teléfono: +34 944 415 049 
+                <br/> 
+                Email: info@febici.eus 
+                </p>
+            </div>
+          </div>
+          <div className="col-auto">Contacto
+          <div className="row"> 
+              <p className="fs-6 fw-normal"> 
+                
+                Bizkaiko Txirrindularitza Federakundea <br/>
+                Kirol Etxea (Miribilla)  Martín <br/>
+                Barua Picaza, 27, 2ª planta,<br/>
+                48003 Bilbao – Bizkaia<br/> 
+               </p>
+            </div>
+          </div>
+          <div className="col-auto">Horario Verano
+          <div className="row"> 
+              <p className="fs-6 fw-normal ">
+                9:00-14:00 h 15:00-17:00 h
+                </p>
+            </div>
+          </div>
+        </div>
+
+        <h1 className ="bak-dg">Localízanos</h1>
+        <div
+          style={{
+            height: "60vh",
+            width: "100%",
+          }}
         >
-          <Marker
-            lat={defaultProps.center.lat}
-            lng={defaultProps.center.lng}
-            text="My Marker"
-          />
-        </GoogleMapReact>
+          <GoogleMapReact
+            bootstrapURLKeys={{ key: "AIzaSyAnIvuew8skXijw_KBeIo4vZkY4JCV80oQ" }}
+            defaultCenter={defaultProps.center}
+            defaultZoom={defaultProps.zoom}
+            yesIWantToUseGoogleMapApiInternals
+          >
+            <Marker
+              lat={defaultProps.center.lat}
+              lng={defaultProps.center.lng}
+              text="My Marker"
+            />
+          </GoogleMapReact>
+        </div>
       </div>
-    </div>
+    </>
   );
 };

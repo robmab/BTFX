@@ -3,19 +3,69 @@
 } */
 
 .navbar {
-  background: rgb(252, 249, 248) !important;
-  box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.375);
-  border-bottom: 1px solid #8b8585ab;
+  
 
   position: fixed;
   width: 100%;
+  color: white;
 
   top: 0;
   z-index: 10;
+
+
+  background-image: linear-gradient(to bottom, rgba(50, 68, 68, 0));
+  backdrop-filter: blur(20px);
+  transition: background-color 0.8s ease, height 0.8s ease;  
+  pointer-events: all;
 }
+
+
+.menu-scrolled{
+  color: rgb(255, 255, 255);
+  background-color: #212529;
+  transition: background-color 0.8s ease, height 0.8s ease;  
+}
+
+.enlaces {
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.enlaces:hover {
+  color: rgb(220, 53, 69);
+  transform: scale(1.1);
+}
+.enlaces:focus {
+  color: rgb(220, 53, 69);
+  transform: scale(1.1);
+}
+
+.transiciones {
+  transition: transform  1s ease-in-out;
+
+}
+.transiciones:hover {
+  transition: transform 1s ease-in-out;
+  box-shadow: outset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #0000002c;
+  transform: scale(0.90);
+}
+
+.transiciones:not(:hover) {
+  transition: transform 0.60s ease-in-out; /* Transición para no estar en hover */
+  outline: none;
+  border: none;
+}
+
+
+
+
+/* JH EDICIÓN JH EDICIÓN JH EDICIÓN */
 
 .navbar-collapse ul {
   margin: 0 0 0 auto !important;
+  
 }
 
 .navbar-collapse ul * {
@@ -36,6 +86,12 @@
   left: 10%;
   transform: translateX(-50%) translateY(5%);
 }
+
+.navbar-collapse ul>li>a{
+  color: white;
+}
+
+
 .login-dk {
   margin-left: 1.5em;
 }
@@ -65,25 +121,31 @@
   font-size: large;
 }
 .navbar .nav-item > a:hover {
-  transition: transform 0.1s ease-in-out;
+  transition: transform 0.5s ease-in-out;
   transform: scale(1.1);
+  color: white;
 }
 
 .navbar .nav-item .dropdown-toggle {
-  border: 1px solid #3f665d;
-  border-radius: 3px;
+  border-radius: 10px;
   margin-left: 2em;
   margin-right: 0.3em;
-  background-color: #dee8e6;
+  color: white;
+  transition: transform 0.6s ease-in-out;
+  transform: scale(1.02);
 }
 
 .navbar-collapse ul > * {
   text-align: center;
-
+  color: white;
   padding: 0.3em;
+
 }
 
 .navbar .dropdown-menu {
+  left: -3em !important;
+}
+.navbar .dropdown-menu li, a {
   left: -3em !important;
 }
 
