@@ -154,7 +154,7 @@ export const Inscription = () => {
                 {/* Loop all events, except the choosen one */}
                 {store.trials.map((item, index) => (
                   <Fragment key={index}>
-                    {item.id !== idEvent ? (
+                    {item.name !== event ? (
                       <option value={item.name}>{item.name}</option>
                     ) : null}
                   </Fragment>
@@ -170,7 +170,7 @@ export const Inscription = () => {
                 onChange={(e) => {
                   setUciId(e.target.value);
                 }}
-                value={uciId}
+                value={uciId === null ? "" : uciId}
                 className="form-control"
                 type="number"
                 required
@@ -185,7 +185,7 @@ export const Inscription = () => {
                 onChange={(e) => {
                   setLicense(e.target.value);
                 }}
-                value={license}
+                value={license === null ? "" : license}
                 className="form-control"
                 type="number"
                 required
@@ -215,7 +215,7 @@ export const Inscription = () => {
                 onChange={(e) => {
                   setFederated(e.target.value);
                 }}
-                value={federated}
+                value={federated === null ? "" : federated}
                 className="form-control"
                 required
               >
@@ -234,7 +234,7 @@ export const Inscription = () => {
                 onChange={(e) => {
                   setGender(e.target.value);
                 }}
-                value={gender}
+                value={gender === null ? "" : gender}
                 className="form-control"
                 required
               >
