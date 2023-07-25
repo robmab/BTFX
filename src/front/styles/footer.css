@@ -5,11 +5,6 @@
 }
 /* modificación para contorno de footer */
 .footer {
-  background-image: linear-gradient(
-    120deg,
-    rgba(246, 212, 101, 0.236) 0%,
-    #fda085 100%
-  );
   box-shadow: 0px -4px 6px 0px rgba(0, 0, 0, 0.3);
 }
 

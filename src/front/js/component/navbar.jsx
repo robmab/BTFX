@@ -154,12 +154,12 @@ export const Navbar = () => {
             <>
               <button
                 type="button"
-                className="btn btn-success login-mb"
+                className="btn btn-success login-mb badge rounded-pill text-bg-dark bg-dark border-0 fs-6 text-white bg-dark border-0 transiciones "
                 onClick={() => {
                   setShowModal(!showModal);
                 }}
               >
-                Inicio
+                Inicio Sesion
               </button>
 
               {showModal && <ModalLogin setShowModal={setShowModal} />}
@@ -183,12 +183,14 @@ export const Navbar = () => {
           aria-label="Toggle navigation"
           style={scroll === 0 ? {} : { backgroundColor: " rgba(0, 0, 0, 0)" }}
         >
-          <span className="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon">
+            <i className="fa-solid fa-bars py-1"></i>
+          </span>
         </button>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0 border-0 text-white  text-uppercase fw-bold ">
+            <li className="nav-item ">
               <Link
                 onClick={() => {
                   setCollapse(false);
@@ -215,7 +217,7 @@ export const Navbar = () => {
               </Link>
             </li>
 
-            <li className="nav-item">
+            <li className="nav-item ">
               <Link
                 onClick={() => {
                   setCollapse(false);
@@ -242,7 +244,7 @@ export const Navbar = () => {
               </Link>
             </li>
 
-            <li className="nav-item">
+            <li className="nav-item ">
               <Link
                 onClick={() => {
                   setCollapse(false);
@@ -274,7 +276,7 @@ export const Navbar = () => {
           logged ? (
             <li className="nav-item dropdown">
               <a
-                className="nav-link dropdown-toggle active"
+                className="nav-link dropdown-toggle "
                 href="#"
                 id="navbarDropdown"
                 role="button"
@@ -361,7 +363,7 @@ export const Navbar = () => {
                   setShowModal(!showModal);
                 }}
                 type="button"
-                className="btn btn-success login-dk"
+                className="btn btn-success login-dk badge rounded-pill text-bg-dark bg-dark border-0 transiciones fs-6"
               >
                 Iniciar Sesión
               </button>
