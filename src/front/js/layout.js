@@ -5,14 +5,14 @@ import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 
 import { Home } from "./pages/home.jsx";
-import { Signup } from "./pages/signup.jsx";
-import { Login } from "./pages/login.jsx";
+import { Signup } from "./pages/profile/signup.jsx";
+import { Login } from "./pages/profile/login.jsx";
 import { Inscription } from "./pages/inscription.jsx";
-import { Profile } from "./pages/profile.jsx";
+import { Profile } from "./pages/profile/profile.jsx";
 import { Classification } from "./pages/classification.jsx";
 import { ManagerInscription } from "./pages/managerInscription.jsx";
-import { RecoverPassword } from "./pages/recoverPassword.jsx";
-import { ResetPassword } from "./pages/resetPassword.jsx";
+import { RecoverPassword } from "./pages/profile/recoverPassword.jsx";
+import { ResetPassword } from "./pages/profile/resetPassword.jsx";
 import { AdminTrials } from "./pages/adminTrials.jsx";
 import { Legalidad } from "./pages/legalidad.jsx";
 

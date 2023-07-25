@@ -1,19 +1,16 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
-
 import { useTitle } from "../hooks/useTitle.jsx";
-import { useParallax } from "../hooks/useParallax.jsx";
 
-import { ClassificationTable } from "../component/classificationTable.jsx";
-import { FiltersClassification } from "../component/filtersClassification.jsx";
+import { TitleHero } from "../component/titleHero.jsx";
+import { ClassificationTable } from "../component/Classification/classificationTable.jsx";
+import { FiltersClassification } from "../component/Classification/classificationFilters.jsx";
 
-import "../../styles/classification.css";
 import classification from "../../img/clasification.jpg";
+import "../../styles/classification/classification.css";
 
 export const Classification = () => {
   useTitle("BTXF - Clasificación");
-  useParallax(".title");
-
   const { store } = useContext(Context);
 
   const [tournament, setTournament] = useState({
@@ -27,18 +24,13 @@ export const Classification = () => {
   const [category, setCategory] = useState({});
 
   const [runners, setRunners] = useState([]);
-  const [date, setDate] = useState("-");
+  const [date, setDate] = useState("");
   const [sort, setSort] = useState({});
 
   return (
     <div className="page-inside-wb classification">
-      <div
-        style={{ backgroundImage: `url(${classification})` }}
-        className="title"
-      >
-        <h1>Clasificación</h1>
-      </div>
-      {store.trials.length > 0 && store.tournaments.length > 0 ? (
+      <TitleHero img={classification} title={"Clasificación"} />
+      {store.trials.length > 0 && store.tournaments.length > 0 && (
         <>
           <FiltersClassification
             setRunners={setRunners}
@@ -61,7 +53,7 @@ export const Classification = () => {
             event={event}
           />
         </>
-      ) : null}
+      )}
     </div>
   );
 };

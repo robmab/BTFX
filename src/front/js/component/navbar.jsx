@@ -6,18 +6,25 @@ import { ModalLogin } from "./modalLogin.jsx";
 import logo from "../../img/BTXF-notext.png";
 import "../../styles/navbar.css";
 
+import { useDimensions } from "../hooks/useDimensions.jsx";
+import { useScroll } from "../hooks/useScroll.jsx";
+
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
-
-  const location = useLocation();
+  //CAPTURE WIDTH AND HEIGHT WHEN ZOOM IN/OUT
+  const dimensions = useDimensions();
+  const scroll = useScroll();
   const navigate = useNavigate();
-  /* remove parallax listen from home always page change */
+
+  /* Track if Scroll its on top screen */
+  const [topScreen, setTopScreen] = useState(false);
   useEffect(() => {
-    document.querySelector("body").onscroll = () => {};
-  }, [location]);
+    if (scroll !== 0) setTopScreen(false);
+    else setTopScreen(true);
+    actions.navbar(true);
+  }, [scroll]);
 
   const [logged, setLogged] = useState(false);
-  const [search, setSearch] = useState(false);
   const [collapse, setCollapse] = useState(false);
 
   const [username, setUsername] = useState(false);
@@ -38,29 +45,12 @@ export const Navbar = () => {
     } else setLogged(false);
   }, [store.user]);
 
-  //CAPTURE WIDTH AND HEIGHT WHEN ZOOM IN/OUT
-  const [dimensions, setDimensions] = useState({});
-
-  useEffect(() => {
-    const handleResize = () => {
-      setDimensions({
-        height: window.innerHeight,
-        width: window.innerWidth,
-      });
-    };
-    window.addEventListener("resize", handleResize);
-    window.addEventListener("load", handleResize);
-  
-    window.addEventListener("scroll", function() {
-
-      const navP = document.querySelector(".navbar");
-      navP.classList.toggle("menu-scrolled", window.scrollY > 0);
-    });
-  
-  }, []);
-
   return (
-    <nav className="navbar navbar-expand-lg  ">
+    <nav
+      className={`${
+        topScreen && !collapse ? null : "navbar-opacity"
+      } navbar navbar-expand-lg navbar-light bg-light`}
+    >
       <div className="container-fluid">
         <Link
           onClick={() => {
@@ -74,23 +64,7 @@ export const Navbar = () => {
         >
           <img width="80px" src={logo} alt="" />
         </Link>
-        {/* <form className="search-form d-flex">
-          {dimensions.width < 1000 ? (
-            <input
-              className="fontAwesome search form-control me-2"
-              type="search"
-              placeholder="&#xf002;  "
-              aria-label="Search"
-            />
-          ) : (
-            <input
-              className="fontAwesome search form-control me-2"
-              type="search"
-              placeholder="&#xf002;  Buscar"
-              aria-label="Search"
-            />
-          )}
-        </form> */}
+
         {dimensions.width < 1000 ? (
           logged ? (
             <li className="nav-item dropdown">
@@ -157,88 +131,10 @@ export const Navbar = () => {
                         Gestionar Pruebas
                       </a>
                     </li>
-                    {/* <li>
-                      <a
-                        onClick={() => {
-                          setCollapse(false);
-                          navigate("/admin-events");
-                        }}
-                        className="dropdown-item"
-                        href="#"
-                      >
-                        Eventos
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        onClick={() => {
-                          setCollapse(false);
-                          navigate("/admin-tournaments");
-                        }}
-                        className="dropdown-item"
-                        href="#"
-                      >
-                        Torneos
-                      </a>
-                    </li>
-
-                    <li>
-                      <a
-                        onClick={() => {
-                          setCollapse(false);
-                          navigate("/admin-users");
-                        }}
-                        className="dropdown-item"
-                        href="#"
-                      >
-                        Usuarios
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        onClick={() => {
-                          setCollapse(false);
-                          navigate("/admin-clubs");
-                        }}
-                        className="dropdown-item"
-                        href="#"
-                      >
-                        Clubs
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        onClick={() => {
-                          setCollapse(false);
-                          navigate("/admin-teams");
-                        }}
-                        className="dropdown-item"
-                        href="#"
-                      >
-                        Equipos
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        onClick={() => {
-                          setCollapse(false);
-                          navigate("/admin-categories");
-                        }}
-                        className="dropdown-item"
-                        href="#"
-                      >
-                        Categorías
-                      </a>
-                    </li> */}
                   </>
                 )}
 
                 <hr className="dropdown-divider" />
-                {/* <li>
-                  <a className="dropdown-item" href="#">
-                    Seguimientos
-                  </a>
-                </li> */}
 
                 <li>
                   <a
@@ -273,20 +169,23 @@ export const Navbar = () => {
         <button
           onClick={() => {
             if (!collapse) {
-              const myTimeout = setTimeout(() => setCollapse(true), 300);
+              setTimeout(() => setCollapse(true), 300);
             } else {
-              const myTimeout = setTimeout(() => setCollapse(false), 300);
+              setTimeout(() => setCollapse(false), 300);
             }
           }}
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
+          data-bs-target={dimensions.width < 1000 && "#navbarSupportedContent"}
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
+          style={scroll === 0 ? {} : { backgroundColor: " rgba(0, 0, 0, 0)" }}
         >
-          <span className="navbar-toggler-icon"><i className="fa-solid fa-bars py-1"></i></span>
+          <span className="navbar-toggler-icon">
+            <i className="fa-solid fa-bars py-1"></i>
+          </span>
         </button>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -298,9 +197,21 @@ export const Navbar = () => {
                   navigate("/calendario");
                 }}
                 data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent"
-                className="nav-link text-white fw-bold transiciones"
+                data-bs-target={
+                  dimensions.width < 1000 && "#navbarSupportedContent"
+                }
+                className="nav-link active"
                 aria-current="page"
+                style={
+                  scroll === 0 && dimensions.width > 1000
+                    ? {
+                        color: "white",
+                        textShadow: "2px 2px 2px black",
+                        transition:
+                          "background-color 150ms linear,color 150ms linear,text-shadow 150ms linear",
+                      }
+                    : {}
+                }
               >
                 Calendario
               </Link>
@@ -313,9 +224,21 @@ export const Navbar = () => {
                   navigate("/inscription");
                 }}
                 data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent"
-                className="nav-link text-white transiciones fw-bold transiciones"
+                data-bs-target={
+                  dimensions.width < 1000 && "#navbarSupportedContent"
+                }
+                className="nav-link active"
                 aria-current="page"
+                style={
+                  scroll === 0 && dimensions.width > 1000
+                    ? {
+                        color: "white",
+                        textShadow: "2px 2px 2px black",
+                        transition:
+                          "background-color 150ms linear,color 150ms linear,text-shadow 150ms linear",
+                      }
+                    : {}
+                }
               >
                 Inscripción
               </Link>
@@ -328,9 +251,21 @@ export const Navbar = () => {
                   navigate("/classification");
                 }}
                 data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent"
-                className="nav-link active text-white  border-0 fw-bold transiciones"
+                data-bs-target={
+                  dimensions.width < 1000 && "#navbarSupportedContent"
+                }
+                className="nav-link active"
                 aria-current="page"
+                style={
+                  scroll === 0 && dimensions.width > 1000
+                    ? {
+                        color: "white",
+                        textShadow: "2px 2px 2px black",
+                        transition:
+                          "background-color 150ms linear,color 150ms linear,text-shadow 150ms linear",
+                      }
+                    : {}
+                }
               >
                 Clasificación
               </Link>
@@ -403,87 +338,9 @@ export const Navbar = () => {
                         Gestionar Pruebas
                       </a>
                     </li>
-                    {/*  <li>
-                      <a
-                        onClick={() => {
-                          setCollapse(false);
-                          navigate("/admin-events");
-                        }}
-                        className="dropdown-item"
-                        href="#"
-                      >
-                        Eventos
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        onClick={() => {
-                          setCollapse(false);
-                          navigate("/admin-tournaments");
-                        }}
-                        className="dropdown-item"
-                        href="#"
-                      >
-                        Torneos
-                      </a>
-                    </li>
-
-                    <li>
-                      <a
-                        onClick={() => {
-                          setCollapse(false);
-                          navigate("/admin-users");
-                        }}
-                        className="dropdown-item"
-                        href="#"
-                      >
-                        Usuarios
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        onClick={() => {
-                          setCollapse(false);
-                          navigate("/admin-clubs");
-                        }}
-                        className="dropdown-item"
-                        href="#"
-                      >
-                        Clubs
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        onClick={() => {
-                          setCollapse(false);
-                          navigate("/admin-teams");
-                        }}
-                        className="dropdown-item"
-                        href="#"
-                      >
-                        Equipos
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        onClick={() => {
-                          setCollapse(false);
-                          navigate("/admin-categories");
-                        }}
-                        className="dropdown-item"
-                        href="#"
-                      >
-                        Categorías
-                      </a>
-                    </li> */}
                   </>
                 )}
                 <hr className="dropdown-divider" />
-                {/* <li>
-                  <a className="dropdown-item" href="#">
-                    Seguimientos
-                  </a>
-                </li> */}
 
                 <li>
                   <a

@@ -1,10 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
-import { Context } from "../store/appContext";
+import { Context } from "../../store/appContext";
 
-import "../../styles/profile.css";
-import profile from "../../img/profile.png";
-import profileHead from "../../img/profile-head.png";
+import "../../../styles/profile.css";
+import profile from "../../../img/profile.png";
+import profileHead from "../../../img/profile-head.png";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

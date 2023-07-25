@@ -1,6 +1,6 @@
 import React from "react";
 
-import "../../styles/table.css";
+import "../../../styles/classification/table.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretUp, faCaretDown } from "@fortawesome/free-solid-svg-icons";
@@ -97,12 +97,11 @@ export const ClassificationTable = ({
             </thead>
             <tfoot>
               <tr>
-                <th
-                  style={{ fontSize: "15px" }}
-                  colSpan={Object.entries(event).length > 0 ? 6 : 5}
-                >
-                  {date}
-                </th>
+                {Object.entries(event).length > 0 && (
+                  <th style={{ fontSize: "15px" }} colSpan={6}>
+                    {date}
+                  </th>
+                )}
               </tr>
             </tfoot>
             <tbody>

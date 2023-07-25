@@ -44,15 +44,15 @@
 .classification .table td {
   padding: 10px 10px 0;
   text-align: center;
-  font-size: larger;
-  font-weight: 500;
+  font-size: 19px;
+  font-weight: 600;
 }
 
 .classification .table td:before {
   content: attr(data-title);
-  color: #7a91aa;
+  color: #ff0000;
   text-transform: uppercase;
-  font-size: 1.4rem;
+  font-size: 19px;
   padding-right: 10px;
   display: block;
 }
@@ -84,7 +84,7 @@
   display: block;
   padding: 10px;
   text-align: center;
-  color: #b8c4d2;
+  color: #8c96a1;
 }
 
 .classification .table .button {
@@ -191,6 +191,22 @@
 }
 .classification .table * {
   font-size: large;
+}
+
+@media (max-width: 720px) {
+  .classification .table td:first-of-type {
+    background-color: rgb(227, 7, 7);
+    border-radius: 10px;
+    box-shadow: 0 3px 3px 2px rgba(0, 0, 0, 0.319);
+
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    padding: 0;
+  }
+
+  .classification .table tfoot th {
+    font-size: 19px !important;
+  }
 }
 
 @media (min-width: 460px) {

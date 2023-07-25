@@ -1,12 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
 
-import { Context } from "../store/appContext";
+import { Context } from "../../store/appContext";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 
-import "../../styles/signup.css";
+import "../../../styles/formulary.css";
 
 export const Signup = () => {
   useEffect(() => {

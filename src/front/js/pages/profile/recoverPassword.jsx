@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
 
-import { Context } from "../store/appContext";
+import { Context } from "../../store/appContext";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,19 +9,17 @@ import {
   faCheckCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
-import "../../styles/signup.css";
+import "../../../styles/formulary.css";
 
-export const ResetPassword = () => {
+export const RecoverPassword = () => {
   useEffect(() => {
     document.title = "BTXF - Recuperar Contraseña";
   }, []);
 
-  const [token, setToken] = useState(useParams().token.replaceAll("&", "."));
-
-  const navigate = useNavigate();
   const { store, actions } = useContext(Context);
   const [load, setLoad] = useState(false);
 
+  const navigate = useNavigate();
   //Redirect in case user is logged
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -35,55 +33,37 @@ export const ResetPassword = () => {
   const [alertText, setAlertText] = useState("An error has occurred.");
   const [alertColor, setAlertColor] = useState("red");
 
-  const [password, setPassword] = useState("");
-  const [password2, setPassword2] = useState("");
-
-  const validatePassword = () => {
-    if (password !== password2 && password !== "" && password2 !== "") {
-      setAlert(true);
-      setAlertColor("red");
-      setAlertText("Las contraseñas no coinciden");
-      return false;
-    } else {
-      setAlert(false);
-      return true;
-    }
-  };
+  const [email, setEmail] = useState("");
 
   const handleFormulary = async (e) => {
     e.preventDefault();
 
-    if (!validatePassword()) return;
-
-    const resp = await actions.resetPassword(password, token);
+    const resp = await actions.recoverPassword(email);
     if (resp) {
       setAlert(true);
-      setAlertText("Contraseña cambiada correctamente.");
+      setAlertText("Email enviado.");
       setAlertColor("green");
-      setPassword("");
-      setPassword2("");
-
-      setTimeout(() => {
-        navigate("/");
-      }, 3000);
+      setEmail("");
     } else {
       setAlert(true);
+      setAlertText("Email no existe.");
       setAlertColor("red");
-      setAlertText("Error inesperado, vuelva a intentarlo mas adelante.");
-      setPassword("");
-      setPassword2("");
+      setEmail("");
     }
   };
 
   return (
-    <div className="page-inside-wb wrapper-formulary pt-5 w-25">
+    <div className="page-inside-wb wrapper-formulary pt-5 w-25 mt-5">
       <>
         <div className="form">
           <form onSubmit={handleFormulary}>
             <div className="header-submit">
-              <h1>Recuperar Contraseña</h1>
+              <h1 className="fw-bold fs-1">Recuperar Contraseña</h1>
               <div className="subtitle-submit d-flex">
-                <h6>Porfavor, ingrese su nueva contraseña.</h6>
+                <h6>
+                  Porfavor, ingrese su email y se le enviará un mensaje con las
+                  instrucciones para recuperar su contraseña.
+                </h6>
               </div>
             </div>
 
@@ -115,39 +95,24 @@ export const ResetPassword = () => {
             ) : null}
 
             {/* ALERT END*/}
-            <div className="form-group mb-1">
-              <label htmlFor="exampleInputEmail1">Contraseña*</label>
+            <div className="form-group">
+              <label htmlFor="exampleInputEmail1">Email</label>
               <input
                 required
-                onBlur={validatePassword}
                 onChange={(e) => {
-                  setPassword(e.target.value);
+                  setEmail(e.target.value);
+                  setAlert(false);
                 }}
-                value={password}
-                type="password"
+                value={email}
+                type="email"
                 className="form-control"
-                id="password"
-                aria-describedby="emailHelp"
-              />
-            </div>
-            <div className="form-group mb-1">
-              <label htmlFor="exampleInputEmail1">Confirmar contraseña*</label>
-              <input
-                required
-                onBlur={validatePassword}
-                onChange={(e) => {
-                  setPassword2(e.target.value);
-                }}
-                value={password2}
-                type="password"
-                className="form-control"
-                id="password2"
+                id="firstField"
                 aria-describedby="emailHelp"
               />
             </div>
 
             <div className="footer-submit">
-              <button type="submit" className={`btn btn-success`}>
+              <button type="submit" className={`btn btn-danger`}>
                 Continuar
               </button>
             </div>
