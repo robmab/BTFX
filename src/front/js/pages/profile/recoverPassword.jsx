@@ -47,12 +47,12 @@ export const RecoverPassword = () => {
   };
 
   return (
-    <div className="page-inside-wb wrapper-formulary pt-5 w-25">
+    <div className="page-inside-wb wrapper-formulary pt-5 w-25 mt-5">
       <>
         <div className="form">
           <form onSubmit={handleFormulary}>
             <div className="header-submit">
-              <h1>Recuperar Contraseña</h1>
+              <h1 className="fw-bold fs-1">Recuperar Contraseña</h1>
               <div className="subtitle-submit d-flex">
                 <h6>
                   Porfavor, ingrese su email y se le enviará un mensaje con las
@@ -94,7 +94,7 @@ export const RecoverPassword = () => {
             </div>
 
             <div className="footer-submit">
-              <button type="submit" className={`btn btn-success`}>
+              <button type="submit" className={`btn btn-danger`}>
                 Continuar
               </button>
             </div>

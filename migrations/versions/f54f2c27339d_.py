@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 0f967dff304e
+Revision ID: f54f2c27339d
 Revises: 
-Create Date: 2023-07-17 13:30:15.366044
+Create Date: 2023-07-24 13:47:15.636071
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '0f967dff304e'
+revision = 'f54f2c27339d'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -74,6 +74,7 @@ def upgrade():
                     sa.PrimaryKeyConstraint('id')
                     )
     op.create_table('user',
+<<<<<<< HEAD:migrations/versions/0f967dff304e_.py
                     sa.Column('id', sa.Integer(), nullable=False),
                     sa.Column('email', sa.String(length=120), nullable=False),
                     sa.Column('password', sa.String(
@@ -107,6 +108,34 @@ def upgrade():
                     sa.UniqueConstraint('uci_id'),
                     sa.UniqueConstraint('user_name')
                     )
+=======
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('email', sa.String(length=120), nullable=False),
+    sa.Column('password', sa.String(length=120), nullable=False),
+    sa.Column('user_name', sa.String(length=20), nullable=False),
+    sa.Column('name', sa.String(length=20), nullable=False),
+    sa.Column('subname', sa.String(length=80), nullable=False),
+    sa.Column('dni', sa.String(length=9), nullable=False),
+    sa.Column('phone', sa.Integer(), nullable=True),
+    sa.Column('gender', sa.Enum('Hombre', 'Mujer', name='sexo'), nullable=True),
+    sa.Column('date', sa.Date(), nullable=True),
+    sa.Column('uci_id', sa.BigInteger(), nullable=True),
+    sa.Column('license', sa.String(length=20), nullable=True),
+    sa.Column('federated', sa.Enum('Sí', 'No', name='federado'), nullable=True),
+    sa.Column('role', sa.Enum('User', 'Manager', 'Admin', name='role'), server_default='User', nullable=False),
+    sa.Column('rider', sa.Enum('Yes', 'No', name='rider'), server_default='No', nullable=True),
+    sa.Column('category_id', sa.Integer(), nullable=True),
+    sa.Column('team_id', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['category_id'], ['category.id'], ),
+    sa.ForeignKeyConstraint(['team_id'], ['team.id'], ),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('dni'),
+    sa.UniqueConstraint('email'),
+    sa.UniqueConstraint('license'),
+    sa.UniqueConstraint('uci_id'),
+    sa.UniqueConstraint('user_name')
+    )
+>>>>>>> a4e2e7773ecda65ba2d74131e8625a24f14ed35b:migrations/versions/f54f2c27339d_.py
     op.create_table('competition_data',
                     sa.Column('id', sa.Integer(), nullable=False),
                     sa.Column('dorsal', sa.Integer(), nullable=True),

@@ -67,7 +67,7 @@ export const Login = () => {
   };
 
   return (
-    <div className="page-inside-wb wrapper-formulary pt-5 w-25">
+    <div className="page-inside-wb wrapper-formulary pt-5 w-25 mt-5">
       <>
         <div className="form">
           <form onSubmit={handleFormulary}>
@@ -139,11 +139,11 @@ export const Login = () => {
               />
               <label className="form-check-label" htmlFor="exampleCheck1">
                 Recuerdame{" "}
-                <Link to={"/recover-password"}>¿No puedes acceder?</Link>
+                <Link to={"/recover-password"} className="text-danger">¿No puedes acceder?</Link>
               </label>
             </div>
             <div className="footer-submit">
-              <button type="submit" className={`btn btn-success`}>
+              <button type="submit" className={`btn btn-success text-white bg-danger border-0`}>
                 Continuar
               </button>
             </div>

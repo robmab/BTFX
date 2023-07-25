@@ -11,41 +11,32 @@ export const Footer = () => {
 
   return (
     <Fragment>
-      <footer className="footer py-2">
+      <footer className="footer py-2 bg-dark">
         <div className="container-fluid position-relative">
           <div className="row ml-3 justify-content-between">
             <div className="col-md-4 fs-6 fw-lighter">
-              <ul className="nav flex-column gap-2 mt-3">
-                <li className="nav-item">
+              <ul className="nav  flex-column gap-2 mt-3">
+                <li className="nav-item ">
                   <Link
-                    className="nav-link active enlaces"
+                    className="nav-link active enlaces fw-bold fst-italic text-white"
                     aria-current="page"
                     to={`/legalidad`}
-                    onClick={() => {
-                      navigate("/legalidad");
-                    }}
                   >
                     AVISO LEGAL
                   </Link>
                 </li>
                 <li className="nav-item">
                   <Link
-                    className="nav-link enlaces"
+                    className="nav-link enlaces fw-bold fst-italic text-white"
                     to={`/legalidad`}
-                    onClick={() => {
-                      navigate("/legalidad");
-                    }}
                   >
                     POLÍTICA DE COOKIES
                   </Link>
                 </li>
                 <li className="nav-item">
                   <Link
-                    className="nav-link enlaces "
+                    className="nav-link enlaces fw-bold fst-italic text-white"
                     to={`/legalidad`}
-                    onClick={() => {
-                      navigate("/legalidad");
-                    }}
                   >
                     POLÍTICA DE PRIVACIDAD
                   </Link>
@@ -69,7 +60,7 @@ export const Footer = () => {
                 <ul className="nav flex-column gap-1 mt-3">
                   <li className="nav-item">
                     <Link
-                      className="nav-link enlaces"
+                      className="nav-link enlaces fw-bold fst-italic text-white"
                       aria-current="page"
                       to="#"
                     >
@@ -78,18 +69,22 @@ export const Footer = () => {
                   </li>
                   <li className="nav-item">
                     <Link
-                      className="nav-link enlaces "
-                      aria-current="page"
-                      to="inscription"
+                      className="nav-link enlaces fw-bold fst-italic text-white"
+                      to={`/inscription`}
+                      onClick={() => {
+                        navigate("/inscription");
+                      }}
                     >
                       INSCRIPCIÓN
                     </Link>
                   </li>
                   <li className="nav-item">
                     <Link
-                      className="nav-link enlaces "
-                      aria-current="page"
-                      to="#"
+                      className="nav-link enlaces fw-bold fst-italic text-white"
+                      to={`/classification`}
+                      onClick={() => {
+                        navigate("/classification");
+                      }}
                     >
                       CLASIFICACIÓN
                     </Link>
@@ -98,11 +93,11 @@ export const Footer = () => {
               </div>
 
               <div className="row g-2">
-                <li className="col-6 alinear mx-5">
+                <li className="col-6 alinear mx-5 z-1">
                   <img
                     src={Log2}
                     alt=""
-                    className="img-fluid position-relative z-n1 d-inline opacity-75"
+                    className="img-fluid position-relative z-1 d-inline "
                   />
                 </li>
                 <li className="col-6 alinear">
@@ -120,30 +115,3 @@ export const Footer = () => {
     </Fragment>
   );
 };
-
-{
-  /* <nav className="d-flex navbar-expand-lg bg-body-tertiary position-static">
-    <div className="container-fluid">
-      <ul className="navbar-nav row w-100 p-2">
-        <li className="col-lg-2 ">
-          <a className="nav-link active" aria-current="page" href="#">
-            Politica de privacidad
-          </a>
-        </li>
-        <li className="col-lg-2">
-          <a className="nav-link" href="#">
-            Politica de cookies
-          </a>
-        </li>
-        <li className="col-lg-2">
-          <a className="nav-link" href="#">
-            Aviso Legal
-          </a>
-        </li>
-        <li className="col-lg-6 text-end">
-          <p>© 2023 Copyright. All rights reserved.</p>
-        </li>
-      </ul>
-    </div>
-  </nav> */
-}

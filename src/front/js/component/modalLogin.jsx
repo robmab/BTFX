@@ -79,8 +79,9 @@ export const ModalLogin = (props) => {
       <div
         ref={wrapperRef}
         className="modal-content-r"
-        style={alert ? { height: "31em" } : {}}
-      >
+        id="blur"
+        style={alert ? { height: "31em" } : {}}      
+        >
         <div className="modal-header-r">
           <div className="title d-flex">
             <h5 className="modal-title-r" id="exampleModalLabel">
@@ -168,6 +169,7 @@ export const ModalLogin = (props) => {
               <label className="form-check-label" htmlFor="exampleCheck1">
                 Recuerdame{" "}
                 <Link
+                className="text-danger"
                   onClick={() => {
                     props.setShowModal(false);
                     navigate("/recover-password");
@@ -178,7 +180,7 @@ export const ModalLogin = (props) => {
                 </Link>
               </label>
             </div>
-            <button type="submit" className="btn btn-success">
+            <button type="submit" className="btn btn-danger">
               Continuar
             </button>
           </div>

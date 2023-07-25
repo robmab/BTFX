@@ -8,7 +8,7 @@ export const Legalidad = () => {
 
   return (
     <Fragment>
-      <div className="container-fluid page-inside-sideband  ">
+      <div className="mt-5 page-wrapper page-inside-wb  ">
         <AvisoLegal />
       </div>
     </Fragment>

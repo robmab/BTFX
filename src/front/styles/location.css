@@ -4,6 +4,8 @@
 
 .location {
   box-shadow: 0 2px 20px 3px black;
+  margin-top: 90%;
+  margin-bottom: 15%;
 }
 
 .location h1 {
@@ -18,3 +20,14 @@
   width: 90% !important;
   margin-bottom: 3em;
 }
+
+.bak-dg{
+  background-color:rgba(179,18,23,1);
+  border-radius:10px;
+  color:white;
+  margin-top: 5em;
+}
+.bak-dg2{
+  margin-top: 20em;
+}
+
