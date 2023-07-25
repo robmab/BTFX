@@ -19,6 +19,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       categories: [],
       teams: [],
       eventResults: [],
+      navbar: false,
     },
     actions: {
       firstLoad: async () => {
@@ -26,7 +27,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         if (user !== null) {
           const store = getStore();
           store.user = JSON.parse(user);
-          setStore(user);
+          setStore(store);
         }
 
         try {
@@ -37,7 +38,9 @@ const getState = ({ getStore, getActions, setStore }) => {
           // console.log(tournaments.data, tournaments.status);
 
           const store = getStore();
+
           store.trials = response.data.response;
+
           store.tournaments = tournaments.data.response;
           setStore(store);
 
@@ -322,6 +325,12 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log(error);
           return false;
         }
+      },
+      navbar: (navbar) => {
+        const store = getStore();
+        if (navbar) store.navbar = true;
+        else store.navbar = false;
+        setStore(store);
       },
     },
   };

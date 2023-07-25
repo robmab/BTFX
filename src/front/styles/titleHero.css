@@ -1,0 +1,34 @@
+.title-hero > h1 {
+  text-shadow: 1px 1px 3px rgb(255, 255, 255);
+  background-color: rgba(237, 236, 236, 0.512);
+  border-radius: 5px;
+  padding: 0 0.5em;
+  backdrop-filter: blur(2px);
+  box-shadow: 0px 1px 10px 6px rgba(161, 161, 161, 0.227);
+
+  font-size: 55px;
+}
+
+.title-hero {
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  height: 15.6em;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+  margin: 0;
+  margin-bottom: 1.5em;
+  padding-top: 6em;
+  box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.086);
+}
+
+@media (max-width: 720px) {
+  .title-hero {
+    background-position-y: 0px !important;
+  }
+}

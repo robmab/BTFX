@@ -42,17 +42,26 @@ export const AdminTrials = () => {
     }
   }, [store.user]);
 
-  const handleRegisterEvent = async (idEvent, time, points) => {
+  const handleRegisterEvent = async (idEvent, t, p, index) => {
     const data = {
       idEvent: idEvent,
-      time: time,
-      points: points,
+      time: t,
+      points: p,
     };
+
+    if (t === undefined || p === undefined || p === "") return;
 
     const resp = await actions.registerEvent(data);
 
+    const auxT = time;
+    const auxP = points;
+    auxT[index] = "";
+    auxP[index] = "";
+    setTime(auxT);
+    setPoints(auxP);
     if (resp === 200) {
       actions.firstLoad();
+      actions.loadTrials();
     }
   };
 
@@ -82,6 +91,7 @@ export const AdminTrials = () => {
                           }}
                           type="time"
                           step="0.001"
+                          value={time[index]}
                         />
                       </p>
                       <p className="col-12 col-md-2">
@@ -101,7 +111,8 @@ export const AdminTrials = () => {
                             handleRegisterEvent(
                               item.id,
                               time[index],
-                              points[index]
+                              points[index],
+                              index
                             );
                           }}
                           className="btn btn-success"

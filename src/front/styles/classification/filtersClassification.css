@@ -1,0 +1,229 @@
+/* FILTERS */
+.classification .filters {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50em;
+}
+.classification .filters .categories {
+  text-align: center;
+}
+
+.classification {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 2.5em 0;
+}
+
+.classification .filters .btn-light {
+  border: 1px solid black;
+}
+
+.classification .filters button {
+  margin: 0 0.25em 0.25em 0.25em;
+}
+
+.classification .filters > div {
+  text-align: center;
+}
+
+.classification .tournaments > button {
+  font-size: 18px;
+  padding: 0.8em 1em;
+  margin-bottom: 0;
+}
+
+.classification .trials > button {
+  font-size: 13px;
+  padding: 0.3em 1em;
+}
+
+.classification .categories > button {
+  font-size: 12px;
+  padding: 0em 1em;
+}
+
+.classification .filters .categories {
+  margin-top: 0.5em;
+}
+
+.classification .btn-dark {
+  background-color: #38383859;
+  color: black;
+}
+
+/* HR */
+.classification *:before,
+.classification *:after {
+  content: "";
+}
+.classification hr {
+  border: 0;
+  margin: 0.65em auto;
+  max-width: 70%;
+  background-position: 50%;
+  box-sizing: border-box;
+}
+
+.classification .pill {
+  height: 0px;
+  border-radius: 2px;
+
+  color: rgb(128, 0, 0);
+  border: 2px solid currentColor;
+  width: 80%;
+}
+
+/* CSS */
+.button-78 {
+  align-items: center;
+  appearance: none;
+  background-clip: padding-box;
+  background-color: initial;
+  background-image: none;
+  border-style: none;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  flex-direction: row;
+  flex-shrink: 0;
+
+  text-shadow: 1px 1px 1px black;
+  font-size: 12px;
+  font-weight: 500;
+  justify-content: center;
+  line-height: 24px;
+  margin: 0;
+  min-height: 12px;
+  outline: none;
+  overflow: visible;
+
+  pointer-events: auto;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  width: auto;
+  word-break: keep-all;
+  z-index: 0;
+}
+
+.button-78:before,
+.button-78:after {
+  border-radius: 80px;
+}
+
+.button-78:before {
+  background-image: linear-gradient(92.83deg, #ff7426 0, #f93a13 100%);
+  content: "";
+  display: block;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -2;
+}
+
+.button-78:after {
+  background-color: initial;
+
+  background-image: linear-gradient(92.83deg, #ff7426 0, #f93a13 100%);
+  /*  background-image: linear-gradient(#541a0f 0, #0c0d0d 100%); */
+  bottom: 2px;
+  content: "";
+  display: block;
+  left: 2px;
+  overflow: hidden;
+  position: absolute;
+  right: 2px;
+  top: 2px;
+  transition: all 100ms ease-out;
+  z-index: -1;
+}
+
+.button-78:hover:not(:disabled):before {
+  background-image: linear-gradient(#541a0f 0, #0c0d0d 100%);
+}
+
+.button-78:active:not(:disabled) {
+  color: #ccc;
+}
+
+.button-78:active:not(:disabled):before {
+  background-image: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0.2)
+    ),
+    linear-gradient(92.83deg, #ff7426 0, #f93a13 100%);
+}
+
+.button-78:active:not(:disabled):after {
+  background-image: linear-gradient(#541a0f 0, #0c0d0d 100%);
+  bottom: 2px;
+  left: 2px;
+  right: 2px;
+  top: 2px;
+}
+
+.button-78:disabled {
+  cursor: default;
+  opacity: 0.24;
+}
+
+.button-78-inv:after {
+  background-image: linear-gradient(#541a0f 0, #0c0d0d 100%);
+}
+.button-78-inv:before {
+  background-image: linear-gradient(#541a0f 0, #0c0d0d 100%);
+}
+
+.button-78-category:after {
+  background-image: linear-gradient(92.83deg, #ff9152 0, #fd6344 100%);
+}
+.button-78-category:before {
+  background-image: linear-gradient(92.83deg, #ff9152 0, #fd6344 100%);
+}
+
+.button-78-category:active:not(:disabled):before {
+  background-image: linear-gradient(92.83deg, #ff9152 0, #fd6344 100%);
+}
+
+/* RESPONSIVE */
+@media (max-width: 720px) {
+  .classification .filters {
+    width: 100%;
+    margin-bottom: 2em;
+  }
+
+  .classification hr {
+    max-width: 100%;
+  }
+
+  .classification .tournaments > button {
+    font-size: 25px;
+  }
+
+  .classification .trials > button {
+    font-size: 18px;
+  }
+
+  .classification .categories > button {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 720px) and (max-width: 1000px) {
+  .classification .filters {
+    width: 95%;
+  }
+}

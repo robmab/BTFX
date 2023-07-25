@@ -1,0 +1,8 @@
+/* ALERT */
+.alert {
+  padding-right: 0.7em;
+}
+.alert-text {
+  width: 100% !important;
+  margin-left: 1em;
+}

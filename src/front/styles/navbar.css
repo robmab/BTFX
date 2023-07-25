@@ -3,7 +3,7 @@
 } */
 
 .navbar {
-  background: rgb(252, 249, 248) !important;
+  background: rgba(252, 249, 248, 0) !important;
   box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.375);
   border-bottom: 1px solid #8b8585ab;
 
@@ -12,6 +12,20 @@
 
   top: 0;
   z-index: 10;
+  backdrop-filter: blur(2px);
+
+  transition: background-color 150ms linear;
+}
+
+.navbar-opacity {
+  background: rgb(252, 249, 248) !important;
+
+  transition: background-color 150ms linear;
+}
+
+.navbar-text-white {
+  color: white !important;
+  text-shadow: 1px 1px 1px black !important;
 }
 
 .navbar-collapse ul {
@@ -50,6 +64,10 @@
 .search:focus {
   border-color: #0078505a;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #0078502c;
+}
+
+.navbar li > a {
+  text-shadow: 1px 1px 1px white;
 }
 
 /* PROFILE */
@@ -122,7 +140,14 @@
 
   .navbar .nav-item .dropdown-toggle {
     margin-left: 0;
+    background-color: rgb(rgb(171, 80, 80));
   }
+}
+
+.navbar-toggler {
+  background-color: rgba(237, 237, 237, 0.79);
+  color: rgb(255, 252, 252);
+  border-color: 15px solid rgb(187, 44, 44) !important;
 }
 
 @media (min-width: 720px) and (max-width: 1000px) {

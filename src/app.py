@@ -14,24 +14,20 @@ from api.commands import setup_commands
 
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
-
 from flask_mail import Mail
 
 
-# from flask_bcrypt import Bcrypt
-
-
 # from models import Person
-
 ENV = os.getenv("FLASK_ENV")
 static_file_dir = os.path.join(os.path.dirname(
     os.path.realpath(__file__)), '../public/')
 app = Flask(__name__)
+
 # Allow CORS requests to this API
 CORS(app)
 app.url_map.strict_slashes = False
 
-# database condiguration
+# database configuration
 db_url = os.getenv("DATABASE_URL")
 if db_url is not None:
     app.config['SQLALCHEMY_DATABASE_URI'] = db_url.replace(
@@ -46,11 +42,13 @@ db.init_app(app)
 
 # Setup B-crypt
 bcrypt = Bcrypt(app)
+
 app.bcrypt = bcrypt
 
 # Setup the Flask-JWT-Extended extension
-app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")  # Change this!
+app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")
 jwt = JWTManager(app)
+
 app.jwt = jwt
 
 # Setup mail
@@ -60,9 +58,8 @@ app.config['MAIL_USERNAME'] = os.getenv("MAIL_USERNAME")
 app.config['MAIL_PASSWORD'] = os.getenv("MAIL_PASSWORD")
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USE_SSL'] = False
-
-
 mail = Mail(app)
+
 app.mail = mail
 
 # add the admin

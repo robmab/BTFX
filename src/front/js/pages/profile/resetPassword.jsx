@@ -1,22 +1,24 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
 
-import { Context } from "../store/appContext";
+import { Context } from "../../store/appContext";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 
-import "../../styles/signup.css";
+import "../../../styles/formulary.css";
 
-export const RecoverPassword = () => {
+export const ResetPassword = () => {
   useEffect(() => {
-    document.title = "BTFX - Recuperar Contraseña";
+    document.title = "BTXF - Recuperar Contraseña";
   }, []);
 
+  const [token, setToken] = useState(useParams().token.replaceAll("&", "."));
+
+  const navigate = useNavigate();
   const { store, actions } = useContext(Context);
   const [load, setLoad] = useState(false);
 
-  const navigate = useNavigate();
   //Redirect in case user is logged
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -29,20 +31,36 @@ export const RecoverPassword = () => {
   const [alert, setAlert] = useState(false);
   const [alertText, setAlertText] = useState("An error has occurred.");
 
-  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
+
+  const validatePassword = () => {
+    if (password !== password2 && password !== "" && password2 !== "") {
+      setAlert(true);
+      setAlertText("Las contraseñas no coinciden");
+      return false;
+    } else {
+      setAlert(false);
+      return true;
+    }
+  };
 
   const handleFormulary = async (e) => {
     e.preventDefault();
 
-    const resp = await actions.recoverPassword(email);
+    if (!validatePassword()) return;
+
+    const resp = await actions.resetPassword(password, token);
     if (resp) {
       setAlert(true);
-      setAlertText("Email enviado.");
-      setEmail("");
+      setAlertText("Contraseña cambiada correctamente.");
+      setPassword("");
+      setPassword2("");
     } else {
       setAlert(true);
-      setAlertText("Email no existe.");
-      setEmail("");
+      setAlertText("Error inesperado, vuelva a intentarlo mas adelante.");
+      setPassword("");
+      setPassword2("");
     }
   };
 
@@ -54,10 +72,7 @@ export const RecoverPassword = () => {
             <div className="header-submit">
               <h1>Recuperar Contraseña</h1>
               <div className="subtitle-submit d-flex">
-                <h6>
-                  Porfavor, ingrese su email y se le enviará un mensaje con las
-                  instrucciones para recuperar su contraseña.
-                </h6>
+                <h6>Porfavor, ingrese su nueva contraseña.</h6>
               </div>
             </div>
 
@@ -77,18 +92,33 @@ export const RecoverPassword = () => {
             ) : null}
 
             {/* ALERT END*/}
-            <div className="form-group">
-              <label htmlFor="exampleInputEmail1">Email</label>
+            <div className="form-group mb-1">
+              <label htmlFor="exampleInputEmail1">Contraseña*</label>
               <input
                 required
+                onBlur={validatePassword}
                 onChange={(e) => {
-                  setEmail(e.target.value);
-                  setAlert(false);
+                  setPassword(e.target.value);
                 }}
-                value={email}
-                type="email"
+                value={password}
+                type="password"
                 className="form-control"
-                id="firstField"
+                id="password"
+                aria-describedby="emailHelp"
+              />
+            </div>
+            <div className="form-group mb-1">
+              <label htmlFor="exampleInputEmail1">Confirmar contraseña*</label>
+              <input
+                required
+                onBlur={validatePassword}
+                onChange={(e) => {
+                  setPassword2(e.target.value);
+                }}
+                value={password2}
+                type="password"
+                className="form-control"
+                id="password2"
                 aria-describedby="emailHelp"
               />
             </div>

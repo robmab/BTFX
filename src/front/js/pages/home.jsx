@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import React, { useEffect } from "react";
 
-import { Context } from "../store/appContext";
+import { useParallax } from "../hooks/useParallax.jsx";
+import { useTitle } from "../hooks/useTitle.jsx";
 
 import hero from "../../img/hero.jpg";
 import "../../styles/home.css";
@@ -11,24 +11,8 @@ import { faAnglesDown } from "@fortawesome/free-solid-svg-icons";
 import { Location } from "../component/location.jsx";
 
 export const Home = () => {
-  useEffect(() => {
-    document.title = "BTFX";
-  }, []);
-  const location = useLocation();
-
-  const { store, actions } = useContext(Context);
-
-  /* PARALLAX */
-  useEffect(() => {
-    document.querySelector("body").onscroll = () => {
-      const scrolltotop = document.scrollingElement.scrollTop;
-      const target1 = document.querySelector(".hero");
-      const xvalue = "center";
-      const factor = 0.5;
-      const yvalue = scrolltotop * factor;
-      target1.style.backgroundPosition = xvalue + " " + yvalue + "px";
-    };
-  }, [location]);
+  useTitle("BTXF");
+  useParallax(".hero");
 
   return (
     <div className="wrapper-home">
@@ -38,7 +22,7 @@ export const Home = () => {
         }}
         className="px-4 py-5 my-5 text-center hero"
       >
-        <h1 className="display-5 fw-bold">BTFX</h1>
+        <h1 className="display-5 fw-bold">BTXF</h1>
         <div className="col-lg-6 mx-auto">
           <p className="lead mb-4">
             Bienvenido a nuestra plataforma de inscripción de pruebas ciclistas
