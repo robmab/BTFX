@@ -202,7 +202,12 @@ export const Navbar = () => {
                 aria-current="page"
                 style={
                   scroll === 0 && dimensions.width > 1000
-                    ? { color: "white", textShadow: "2px 2px 2px black" }
+                    ? {
+                        color: "white",
+                        textShadow: "2px 2px 2px black",
+                        transition:
+                          "background-color 150ms linear,color 150ms linear,text-shadow 150ms linear",
+                      }
                     : {}
                 }
               >
@@ -224,7 +229,12 @@ export const Navbar = () => {
                 aria-current="page"
                 style={
                   scroll === 0 && dimensions.width > 1000
-                    ? { color: "white", textShadow: "2px 2px 2px black" }
+                    ? {
+                        color: "white",
+                        textShadow: "2px 2px 2px black",
+                        transition:
+                          "background-color 150ms linear,color 150ms linear,text-shadow 150ms linear",
+                      }
                     : {}
                 }
               >
@@ -246,7 +256,12 @@ export const Navbar = () => {
                 aria-current="page"
                 style={
                   scroll === 0 && dimensions.width > 1000
-                    ? { color: "white", textShadow: "2px 2px 2px black" }
+                    ? {
+                        color: "white",
+                        textShadow: "2px 2px 2px black",
+                        transition:
+                          "background-color 150ms linear,color 150ms linear,text-shadow 150ms linear",
+                      }
                     : {}
                 }
               >

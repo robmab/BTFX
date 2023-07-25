@@ -14,16 +14,12 @@
   z-index: 10;
   backdrop-filter: blur(2px);
 
-  -webkit-transition: background-color 150ms linear;
-  -ms-transition: background-color 150ms linear;
   transition: background-color 150ms linear;
 }
 
 .navbar-opacity {
   background: rgb(252, 249, 248) !important;
 
-  -webkit-transition: background-color 150ms linear;
-  -ms-transition: background-color 150ms linear;
   transition: background-color 150ms linear;
 }
 
