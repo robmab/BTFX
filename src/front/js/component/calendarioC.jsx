@@ -2,7 +2,7 @@ import React, { Fragment, useState, useContext, useEffect } from "react";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 
 import "../../styles/calendario.css";
-import img from "../../img/login.jpg";
+
 import cantabria from "../../img/cantabria.jpg";
 import barcelona from "../../img/barcelona.jpg";
 import valencia from "../../img/valencia.jpg";
