@@ -31,7 +31,7 @@ export const Calendariov = () => {
           <div className="row body justify-content-center ">
             <div className="w-100 d-inline d-flex align-content-start flex-wrap  ">
               {store.trials.map((item, index) => (
-                <>
+                <Fragment key={index}>
                   <div
                     className="col-sm-12 col-md-6 d-flex flex-wrap justify-content-center "
                     key={index}
@@ -44,9 +44,10 @@ export const Calendariov = () => {
                       participation_limit={item.participation_limit}
                       torneo={item.tournament}
                       id={item.id}
+                      img={item.img}
                     />
                   </div>
-                </>
+                </Fragment>
               ))}
             </div>
           </div>

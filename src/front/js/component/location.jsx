@@ -15,7 +15,7 @@ export const Location = () => {
       lat: 43.2477,
       lng: -2.92777,
     },
-    zoom: 15,
+    zoom: 13.5,
   };
   return (
     <>
@@ -36,37 +36,38 @@ export const Location = () => {
         }}
       >
         <div className="row d-flex justify-content-center gap-5 fs-2 fw-bold  bak-dg">
-          <div className="col-auto">Dirección
-            <div className="row"> 
-              <p className="fs-6 fw-normal"> 
-                
-                Teléfono: +34 944 415 049 
-                <br/> 
-                Email: info@febici.eus 
-                </p>
+          <div className="col-auto">
+            Dirección
+            <div className="row">
+              <p className="fs-6 fw-normal">
+                Teléfono: +34 944 415 049
+                <br />
+                Email: info@febici.eus
+              </p>
             </div>
           </div>
-          <div className="col-auto">Contacto
-          <div className="row"> 
-              <p className="fs-6 fw-normal"> 
-                
-                Bizkaiko Txirrindularitza Federakundea <br/>
-                Kirol Etxea (Miribilla)  Martín <br/>
-                Barua Picaza, 27, 2ª planta,<br/>
-                48003 Bilbao – Bizkaia<br/> 
-               </p>
+          <div className="col-auto">
+            Contacto
+            <div className="row">
+              <p className="fs-6 fw-normal">
+                Bizkaiko Txirrindularitza Federakundea <br />
+                Kirol Etxea (Miribilla) Martín <br />
+                Barua Picaza, 27, 2ª planta,
+                <br />
+                48003 Bilbao – Bizkaia
+                <br />
+              </p>
             </div>
           </div>
-          <div className="col-auto">Horario Verano
-          <div className="row"> 
-              <p className="fs-6 fw-normal ">
-                9:00-14:00 h 15:00-17:00 h
-                </p>
+          <div className="col-auto">
+            Horario Verano
+            <div className="row">
+              <p className="fs-6 fw-normal ">9:00-14:00 h 15:00-17:00 h</p>
             </div>
           </div>
         </div>
 
-        <h1 className ="bak-dg">Localízanos</h1>
+        <h1 className="bak-dg3">Localízanos</h1>
         <div
           style={{
             height: "60vh",
@@ -74,7 +75,9 @@ export const Location = () => {
           }}
         >
           <GoogleMapReact
-            bootstrapURLKeys={{ key: "AIzaSyAnIvuew8skXijw_KBeIo4vZkY4JCV80oQ" }}
+            bootstrapURLKeys={{
+              key: "AIzaSyAnIvuew8skXijw_KBeIo4vZkY4JCV80oQ",
+            }}
             defaultCenter={defaultProps.center}
             defaultZoom={defaultProps.zoom}
             yesIWantToUseGoogleMapApiInternals

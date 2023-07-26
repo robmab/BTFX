@@ -21,13 +21,22 @@
   margin-bottom: 3em;
 }
 
-.bak-dg{
-  background-color:rgba(179,18,23,1);
-  border-radius:10px;
-  color:white;
+.bak-dg {
+  background-color: rgba(179, 18, 23, 1);
+  border-radius: 10px;
+  color: white;
   margin-top: 5em;
 }
-.bak-dg2{
+.bak-dg2 {
   margin-top: 20em;
 }
 
+.bak-dg3 {
+  font-size: 40px !important;
+  background-color: rgb(37, 37, 37);
+  border-radius: 10px;
+  color: white;
+  margin-top: 5em;
+  padding: 10px;
+  box-shadow: 1px 1px 3px 5px rgba(13, 13, 13, 0.49);
+}

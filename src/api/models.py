@@ -165,6 +165,7 @@ class Competition(db.Model):
     organizer = db.Column(db.String(30), unique=False, nullable=True)
     participation_limit = db.Column(db.Integer, unique=False, nullable=True)
     email_incidents = db.Column(db.String(30), unique=False, nullable=True)
+    img = db.Column(db.String(30), unique=False, nullable=True)
 
     # ForeignKeys
     championship_id = db.Column(db.Integer, db.ForeignKey(
@@ -218,6 +219,7 @@ class Competition(db.Model):
             "organizer": self.organizer,
             "participation_limit": self.participation_limit,
             "email_incidents": self.email_incidents,
+            "img":self.img,
 
             "categories": categories,
             "tournament": championship.title if championship != None else championship,

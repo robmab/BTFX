@@ -25,6 +25,7 @@
   inherits: false;
 }
 .container .card {
+  cursor: pointer;
   border: #ffffff5d 0px solid;
   position: relative;
   width: 320px;
@@ -64,10 +65,10 @@
   display: flex;
   flex-direction: column;
   justify-content: end;
-  align-items: end;
+  align-items: center;
 
   border-radius: 15px 15px 0 0;
-
+  width: 154%;
   height: 12em;
   z-index: 0;
 }
@@ -105,6 +106,7 @@
   color: #ffffff;
   text-shadow: 2px 2px 2px black;
   z-index: 1;
+  width: 100%;
 
   background-color: rgba(48, 47, 47, 0.434);
   backdrop-filter: blur(1px);

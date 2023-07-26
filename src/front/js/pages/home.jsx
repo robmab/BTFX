@@ -70,28 +70,6 @@ export const Home = () => {
                                   Iniciar Sesión
                                 </Link>
                               </div>
-                              <div className="col-auto fs-5 mb-5">
-                                <h2 className="fs-1 text-start fw-bold mt-5 fst-italic text-uppercase w-100 homeedit">
-                                  Diseñado por:
-                                </h2>
-                                <div className="col-md-auto mb-5 mt-2">
-                                  <img
-                                    src={rb}
-                                    alt="Roberto"
-                                    className="col-4 homeedit mb-4 rounded-circle"
-                                  />
-                                  <img
-                                    src={jh}
-                                    alt="Jhoann"
-                                    className="col-4 homeedit mb-4 rounded-circle"
-                                  />
-                                  <img
-                                    src={js}
-                                    alt="Josu"
-                                    className="col-4 homeedit mb-4 rounded-circle"
-                                  />
-                                </div>
-                              </div>
                             </div>
                           </div>
                         </div>
@@ -101,6 +79,30 @@ export const Home = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div className="designed col-auto fs-5 mb-5">
+          <h2 className="fs-1 text-start fw-bold mt-5 fst-italic text-uppercase w-100 homeedit">
+            Diseñado por:
+          </h2>
+          <div className="col-md-auto mb-5 mt-2">
+            <img
+              src={rb}
+              alt="Roberto"
+              className="col-4 homeedit mb-4 rounded-circle"
+            />
+            <img
+              src={jh}
+              alt="Jhoann"
+              className="col-4 homeedit mb-4 rounded-circle"
+            />
+            <img
+              src={js}
+              alt="Josu"
+              className="col-4 homeedit mb-4 rounded-circle"
+            />
           </div>
         </div>
       </div>
