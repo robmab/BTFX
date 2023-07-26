@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
+import { useTitle } from "../../hooks/useTitle.jsx";
 
 import { Context } from "../../store/appContext";
 
@@ -12,9 +13,7 @@ import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 import "../../../styles/formulary.css";
 
 export const Signup = () => {
-  useEffect(() => {
-    document.title = "BTXF - Registro";
-  }, []);
+  useTitle("BTXF - Registro");
 
   const navigate = useNavigate();
   const { store, actions } = useContext(Context);

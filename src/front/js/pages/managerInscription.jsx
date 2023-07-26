@@ -1,8 +1,13 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
+import { useTitle } from "../hooks/useTitle.jsx";
+
 import { Context } from "../store/appContext";
 
 import "../../styles/config.css";
+
+import { TitleHero } from "../component/titleHero.jsx";
+import inscriptions from "../../img/inscriptions.jpg";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -14,9 +19,7 @@ import {
 import tool from "../../img/tool.jpg";
 
 export const ManagerInscription = () => {
-  useEffect(() => {
-    document.title = "BTFX Manager - Inscripciones";
-  }, []);
+  useTitle("BTFX Manager - Inscripciones");
 
   const navigate = useNavigate();
   const dorsalInput = useRef();
@@ -104,12 +107,10 @@ export const ManagerInscription = () => {
 
   return (
     <div className="page-inside-wb config pt-5 w-25">
+      <TitleHero img={inscriptions} title={"Inscripciones"} y={"250"} />
       {load && (
         <>
           <div className="config-wrapper">
-            <div style={{ backgroundImage: `url(${tool})` }} className="title">
-              <h1>Inscripciones</h1>
-            </div>
             <div className="body container-fluid">
               {store.inscriptions.map((item, index) => (
                 <div key={index} className="item row">

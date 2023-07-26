@@ -16,7 +16,9 @@
     inset -5px -5px 5px rgba(255, 255, 255, 0.5),
     5px 5px 5px rgba(0, 0, 0, 0.05), -1px -1px 12px 8px rgba(0, 0, 0, 0.26);
   border-radius: 15px;
-  margin: 30px;
+  margin: 15px;
+  background: #ebf5fc;
+  transition: background-color 0.5s linear, 0.5s;
 }
 
 .container .card .box {
@@ -26,22 +28,30 @@
   right: 20px;
   bottom: 20px;
   background: #ebf5fc;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  border-radius: 15px;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: 0.5s;
+  transition: background-color 0.5s linear, 0.5s;
 }
 
-.container .card:hover .box {
-  transform: translateY(-50px);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+.container .card .box .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: 0.5 linear, background-color 0.5s linear;
+}
+
+.container .card:hover .box,
+.container .card:hover {
+  transform: translateY(-10px);
+
   background: linear-gradient(
     90deg,
     rgba(32, 13, 14, 1) 20%,
     rgba(179, 18, 23, 1) 50%
   );
+  transition: 0.5 linear, background-color 0.5s linear;
 }
 
 .container .card .box .content {
@@ -79,7 +89,6 @@
   color: #fff;
 }
 .container .card .box .content a {
-  position: relative;
   display: inline-block;
   padding: 8px 20px;
   background: #03a9f4;
@@ -89,6 +98,7 @@
   text-decoration: none;
   font-weight: 400;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.02);
+  margin: 0 auto;
 }
 
 .container .card:hover .box .content a {

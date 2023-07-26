@@ -33,7 +33,7 @@ export const Calendariov = () => {
                     <CalendarioC
                       name={item.name}
                       date_celebration={item.date_celebration}
-                      categories={item.categories.join()}
+                      categories={item.categories.sort().join(", ")}
                       location={item.location}
                       participation_limit={item.participation_limit}
                       torneo={item.tournament}

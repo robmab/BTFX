@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
+import { useTitle } from "../../hooks/useTitle.jsx";
 import { Context } from "../../store/appContext";
 
 import "../../../styles/profile.css";
@@ -14,9 +15,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 export const Profile = () => {
-  useEffect(() => {
-    document.title = "BTXF - Perfil";
-  }, []);
+  useTitle("BTXF - Perfil");
 
   const navigate = useNavigate();
   const { store, actions } = useContext(Context);
@@ -81,7 +80,7 @@ export const Profile = () => {
     <div className="page-inside-wb profile pt-5 w-25">
       {load && (
         <>
-          <TitleHero img={profile} title={"Perfil Personal"} y={"460"} />
+          <TitleHero img={profile} title={"Perfil"} y={"400"} />
 
           <div
             className="page-inside-sideband shadow mt-4"

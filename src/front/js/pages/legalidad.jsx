@@ -1,10 +1,9 @@
 import React, { Fragment, useEffect } from "react";
 import { AvisoLegal } from "../component/avisoLegal.jsx";
+import { useTitle } from "../hooks/useTitle.jsx";
 
 export const Legalidad = () => {
-  useEffect(() => {
-    document.title = "BTXF - Legalidad";
-  }, []);
+  useTitle("BTXF - Legalidad");
 
   return (
     <Fragment>

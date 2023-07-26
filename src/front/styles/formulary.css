@@ -25,7 +25,7 @@
 }
 .subtitle-submit > * {
   line-height: 1em;
-  font-size: 13px;
+  font-size: 17px !important;
 }
 .wrapper-formulary h6 {
   font-size: 15px;

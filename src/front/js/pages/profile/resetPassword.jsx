@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
+import { useTitle } from "../../hooks/useTitle.jsx";
 
 import { Context } from "../../store/appContext";
 
@@ -9,12 +10,13 @@ import {
   faCheckCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
+import { TitleHero } from "../../component/titleHero.jsx";
+import resetPassword from "../../../img/reset-password.jpg";
+
 import "../../../styles/formulary.css";
 
 export const ResetPassword = () => {
-  useEffect(() => {
-    document.title = "BTXF - Recuperar Contraseña";
-  }, []);
+  useTitle("BTXF - Recuperar Contraseña");
 
   const [token, setToken] = useState(useParams().token.replaceAll("&", "."));
 
@@ -76,13 +78,17 @@ export const ResetPassword = () => {
   };
 
   return (
-    <div className="page-inside-wb wrapper-formulary pt-5 w-25">
+    <div className="page-inside-wb  pt-5 w-25">
       <>
-        <div className="form">
+        <TitleHero
+          img={resetPassword}
+          title={"Recuperar Contraseña"}
+          y={"250"}
+        />
+        <div className="form wrapper-formulary page-inside-sideband shadow">
           <form onSubmit={handleFormulary}>
             <div className="header-submit">
-              <h1>Recuperar Contraseña</h1>
-              <div className="subtitle-submit d-flex">
+              <div className="subtitle-submit d-flex pt-5">
                 <h6>Porfavor, ingrese su nueva contraseña.</h6>
               </div>
             </div>

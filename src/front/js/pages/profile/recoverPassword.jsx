@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
+import { useTitle } from "../../hooks/useTitle.jsx";
 
 import { Context } from "../../store/appContext";
 
@@ -9,12 +10,13 @@ import {
   faCheckCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
+import { TitleHero } from "../../component/titleHero.jsx";
+import recoverPassword from "../../../img/recover-password.jpg";
+
 import "../../../styles/formulary.css";
 
 export const RecoverPassword = () => {
-  useEffect(() => {
-    document.title = "BTXF - Recuperar Contraseña";
-  }, []);
+  useTitle("BTXF - Recuperar Contraseña");
 
   const { store, actions } = useContext(Context);
   const [load, setLoad] = useState(false);
@@ -53,13 +55,17 @@ export const RecoverPassword = () => {
   };
 
   return (
-    <div className="page-inside-wb wrapper-formulary pt-5 w-25 mt-5">
+    <div className="page-inside-wb  pt-5 w-25 ">
+      <TitleHero
+        img={recoverPassword}
+        title={"Recuperar Contraseña"}
+        y={"250"}
+      />
       <>
-        <div className="form">
+        <div className="form wrapper-formulary page-inside-sideband shadow">
           <form onSubmit={handleFormulary}>
             <div className="header-submit">
-              <h1 className="fw-bold fs-1">Recuperar Contraseña</h1>
-              <div className="subtitle-submit d-flex">
+              <div className="subtitle-submit d-flex pt-5">
                 <h6>
                   Porfavor, ingrese su email y se le enviará un mensaje con las
                   instrucciones para recuperar su contraseña.
