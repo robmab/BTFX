@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import "../../../styles/classification/table.css";
 
@@ -63,8 +63,10 @@ export const ClassificationTable = ({
                 </th>
                 <th onClick={() => handleSort("team")}>
                   Equipo
-                  {sort.team === true && <FontAwesomeIcon icon={faCaretUp} />}
-                  {sort.team === false && (
+                  {sort.team?.name === true && (
+                    <FontAwesomeIcon icon={faCaretUp} />
+                  )}
+                  {sort.team?.name === false && (
                     <FontAwesomeIcon icon={faCaretDown} />
                   )}
                 </th>
@@ -99,18 +101,21 @@ export const ClassificationTable = ({
               <tr>
                 {Object.entries(event).length > 0 && (
                   <th style={{ fontSize: "15px" }} colSpan={6}>
-                    {date}
+                    Fecha del evento: {date}
                   </th>
                 )}
               </tr>
             </tfoot>
             <tbody>
               {runners.map((item, index) => {
+                item.time = item.time.slice(0, 8);
                 return (
                   <tr key={index}>
                     <td>{index + 1}</td>
-                    <td data-title="Nombre">{item.user.name}</td>
-                    <td data-title="Equipo">{item.user.team}</td>
+                    <td data-title="Nombre">
+                      {item.user.name} {item.user.subname}
+                    </td>
+                    <td data-title="Equipo">{item.user.team?.name}</td>
                     <td data-title="Categoría">{item.user.category}</td>
                     {Object.entries(event).length > 0 && (
                       <td data-title="Tiempo">{item.time}</td>

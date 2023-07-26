@@ -11,12 +11,12 @@
 
 .profile h1 {
   margin-bottom: 1em;
-  text-shadow: 1px 5px 1px rgb(255, 255, 255);
+  text-shadow: 1px 5px 1px rgb(205, 205, 205);
 }
 
 .profile .profile-wrapper {
-  background-color: rgb(245, 255, 252);
-  width: 600px;
+  background: linear-gradient(180deg, #f4f7f1 0%, rgb(255, 255, 255) 50%);
+  width: 100%;
 
   border: 1px solid rgba(0, 0, 0, 0.57);
   border-radius: 5px;

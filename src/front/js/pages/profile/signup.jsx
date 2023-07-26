@@ -3,6 +3,9 @@ import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
 
 import { Context } from "../../store/appContext";
 
+import { TitleHero } from "../../component/titleHero.jsx";
+import signup from "../../../img/signup.jpg";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 
@@ -115,13 +118,13 @@ export const Signup = () => {
   const [alertText, setAlertText] = useState("An error has occurred.");
 
   return (
-    <div className="page-inside-wb wrapper-formulary pt-5 w-25 mt-5">
+    <div className="page-inside-wb  pt-5 w-25 ">
+      <TitleHero img={signup} title={"Registro"} y={"510"} />
       <>
-        <div className="form">
+        <div className="wrapper-formulary form page-inside-sideband shadow">
           <form onSubmit={handleFormulary}>
             <div className="header-submit">
-              <h1 className="fw-bold fs-1 fst-italic">Registro</h1>
-              <div className="subtitle-submit d-flex">
+              <div className="subtitle-submit d-flex pt-4">
                 <h6>¿Ya tienes una cuenta?</h6>
                 <Link to={`/login`}>Inicia Sesión</Link>
               </div>

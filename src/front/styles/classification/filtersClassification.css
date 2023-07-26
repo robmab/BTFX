@@ -4,6 +4,8 @@
   flex-direction: column;
   align-items: center;
   width: 50em;
+
+  margin-top: 1.5em;
 }
 .classification .filters .categories {
   text-align: center;

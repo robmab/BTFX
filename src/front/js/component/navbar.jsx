@@ -75,6 +75,16 @@ export const Navbar = () => {
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
+                style={
+                  scroll === 0
+                    ? {
+                        color: "white",
+                        textShadow: "2px 2px 2px black",
+                        transition:
+                          "background-color 150ms linear,color 150ms linear,text-shadow 150ms linear",
+                      }
+                    : {}
+                }
               >
                 {username}{" "}
                 {role === "Manager" && (
@@ -282,13 +292,39 @@ export const Navbar = () => {
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
+                style={
+                  scroll === 0 && dimensions.width > 1000
+                    ? {
+                        color: "white",
+                        textShadow: "2px 2px 2px black",
+                        transition:
+                          "background-color 150ms linear,color 150ms linear,text-shadow 150ms linear",
+                      }
+                    : {}
+                }
               >
                 {username}{" "}
                 {role === "Manager" && (
-                  <i style={{ color: "blue", fontSize: "12px" }}>MNG</i>
+                  <i
+                    style={{
+                      color: "blue",
+                      fontSize: "12px",
+                      textShadow: "1px 1px 2px black",
+                    }}
+                  >
+                    MNG
+                  </i>
                 )}
                 {role === "Admin" && (
-                  <i style={{ color: "red", fontSize: "12px" }}>ADM</i>
+                  <i
+                    style={{
+                      color: "red",
+                      fontSize: "12px",
+                      textShadow: "1px 1px 2px black",
+                    }}
+                  >
+                    ADM
+                  </i>
                 )}
               </a>
               <ul

@@ -60,7 +60,7 @@ class User(db.Model):
             "rider": self.rider,
 
             "category": None if category is None else category.name,
-            "team": None if team is None else team.name
+            "team": None if team is None else team.serialize()
 
         }
 
@@ -202,10 +202,15 @@ class Competition(db.Model):
         runners = list(map(handleRunners, Competition_Data.query.filter_by(
             competition_id=self.id).all()))
 
+        # Transform date format
+        date= str(self.date_celebration).split("-")
+        date.reverse()
+        date="-".join(date)
+  
         return {
             "id": self.id,
             "name": self.title,
-            "date_celebration": str(self.date_celebration),
+            "date_celebration": date,
             "time_celebration": str(self.time_celebration),
             "date_license": str(self.date_license),
             "location": self.location,

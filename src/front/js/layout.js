@@ -38,9 +38,7 @@ const Layout = () => {
       <BrowserRouter basename={basename}>
         <ScrollToTop>
           <Navbar />
-          <div
-            className="page-wrapper"
-          >
+          <div className="page-wrapper">
             <Routes>
               <Route element={<Home />} path="/" />
               <Route element={<Signup />} path="/signup" />
@@ -66,7 +64,6 @@ const Layout = () => {
               <Route element={<AdminTrials />} path="/admin-trials" />
               <Route element={<Legalidad />} path="/legalidad" />
               <Route element={<Legalidad />} path="/legalidad:id" />
-              
 
               <Route element={<h1>Not found!</h1>} />
             </Routes>

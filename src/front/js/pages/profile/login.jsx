@@ -6,6 +6,9 @@ import { Context } from "../../store/appContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 
+import { TitleHero } from "../../component/titleHero.jsx";
+import login from "../../../img/login.jpg";
+
 import "../../../styles/formulary.css";
 
 export const Login = () => {
@@ -67,13 +70,13 @@ export const Login = () => {
   };
 
   return (
-    <div className="page-inside-wb wrapper-formulary pt-5 w-25 mt-5">
+    <div className="page-inside-wb  pt-5 w-25 ">
+      <TitleHero img={login} title={"Iniciar Sesión"} y={"150"} />
       <>
-        <div className="form">
+        <div className="form wrapper-formulary page-inside-sideband shadow">
           <form onSubmit={handleFormulary}>
             <div className="header-submit">
-              <h1>Iniciar Sesión</h1>
-              <div className="subtitle-submit d-flex">
+              <div className="subtitle-submit d-flex pt-5">
                 <h6>¿No tienes una cuenta?</h6>
                 <Link to={`/signup`}>Regístrate</Link>
               </div>
@@ -139,11 +142,16 @@ export const Login = () => {
               />
               <label className="form-check-label" htmlFor="exampleCheck1">
                 Recuerdame{" "}
-                <Link to={"/recover-password"} className="text-danger">¿No puedes acceder?</Link>
+                <Link to={"/recover-password"} className="text-danger">
+                  ¿No puedes acceder?
+                </Link>
               </label>
             </div>
             <div className="footer-submit">
-              <button type="submit" className={`btn btn-success text-white bg-danger border-0`}>
+              <button
+                type="submit"
+                className={`btn btn-success text-white bg-danger border-0`}
+              >
                 Continuar
               </button>
             </div>

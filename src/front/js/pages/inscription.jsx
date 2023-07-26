@@ -110,14 +110,14 @@ export const Inscription = () => {
 
   return (
     <div className="page-inside-wb  pt-5 w-25">
-      <TitleHero img={inscription} title={"Inscripción"} y={"220"} />
+      <TitleHero img={inscription} title={"Inscripción"} y={"330"} />
       {load && (
-        <div className="wrapper-formulary">
+        <div className="wrapper-formulary page-inside-sideband shadow">
           <form onSubmit={handleFormulary}>
             <div className="header-submit">
-              <div className="subtitle-submit d-flex">
+              <div className="subtitle-submit d-flex pt-4">
                 <h6>
-                  Elige la prueba a la que quieres inscribirte. recuerda que
+                  Elige la prueba a la que quieres inscribirte. Recuerda que
                   todos los datos son obligatorios.
                 </h6>
               </div>

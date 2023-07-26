@@ -1,7 +1,12 @@
 .wrapper-home {
   width: 100%;
   /* background-color: rgb(252, 249, 248); */
-  
+}
+.container > .row {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .hero {
@@ -10,7 +15,7 @@
   align-items: center;
 
   margin: 0 !important;
-  height: 90vh;
+  height: 100vh;
   width: 100%;
 
   background-repeat: no-repeat;
@@ -33,79 +38,64 @@
   font-size: 1.2em;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-.initRed{
-  background-color:#b31217;
-  font-size:1.1rem;
-  width:80%;
-  border:none;
+.initRed {
+  background-color: #b31217;
+  font-size: 1.1rem;
+  width: 80%;
+  border: none;
   word-wrap: break-word;
 }
-.initRed:hover{
-  background-color:#b31217;
-  border:none;
+.initRed:hover {
+  background-color: #b31217;
+  border: none;
 }
 
 .initRed:not(:hover) {
-  background-color:#b31217;
-  border:none;
+  background-color: #b31217;
+  border: none;
 }
-.initRed:focus{
-  background-color:#9e0e13;}
+.initRed:focus {
+  background-color: #9e0e13;
+}
 
-.initGray{
-  background-color:#383737;
-  font-size:1rem;
-  width:90%;
-  border:none;
+.initGray {
+  background-color: #383737;
+  font-size: 1rem;
+  width: 90%;
+  border: none;
   word-wrap: break-word;
 }
-.initGray:hover{
-  background-color:#383737;
-  border:none; 
+.initGray:hover {
+  background-color: #383737;
+  border: none;
 }
 
 .initGray:not(:hover) {
   background-color: #383740;
 }
-.initGray:focus{
-  background-color:#2e2e2e;
+.initGray:focus {
+  background-color: #2e2e2e;
 }
 
 .homeedit {
-  margin-left:0; 
+  margin-left: 0;
 }
 
-.homeedit:hover{
-  transition: transform  0.40s ease-in-out;
+.homeedit:hover {
+  transition: transform 0.4s ease-in-out;
   transform: scale(1.015);
-  
 }
 .homeedit:not(:hover) {
-  transition: all 0.40s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
-
-.ubi{
+.ubi {
   margin-top: 35dvw;
 }
 
-.ubi2{
+.ubi2 {
   margin-top: 20%;
 }
-.ubi3{
+.ubi3 {
   margin-bottom: 50%;
 }
-

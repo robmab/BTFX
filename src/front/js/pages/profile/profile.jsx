@@ -3,8 +3,8 @@ import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
 import { Context } from "../../store/appContext";
 
 import "../../../styles/profile.css";
-import profile from "../../../img/profile.png";
-import profileHead from "../../../img/profile-head.png";
+import { TitleHero } from "../../component/titleHero.jsx";
+import profile from "../../../img/profile.jpg";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -37,7 +37,6 @@ export const Profile = () => {
 
   //Redirect in case user is logged
   useEffect(() => {
-    console.log("comprobandoooo");
     const token = localStorage.getItem("token");
     if (token === null) {
       navigate("/");
@@ -82,267 +81,245 @@ export const Profile = () => {
     <div className="page-inside-wb profile pt-5 w-25">
       {load && (
         <>
-          <div
-            style={{
-              backgroundImage: `url(${profileHead})`,
-              backgroundSize: "8em",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "top",
-
-              width: "400px",
-              height: "12.5em",
-              display: "flex",
-              alignItems: "end",
-
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            {" "}
-            <h1>Datos Personales</h1>
-          </div>
+          <TitleHero img={profile} title={"Perfil Personal"} y={"460"} />
 
           <div
-            style={{
-              backgroundImage: `linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.95)),url(${profile})`,
-              backgroundSize: "30em",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
-            }}
-            className="profile-wrapper container-fluid"
+            className="page-inside-sideband shadow mt-4"
+            style={{ width: "55em" }}
           >
-            {/* ALERT */}
-            {alert ? (
-              <div
-                className="alert alert-danger d-flex align-items-center"
-                role="alert"
-              >
-                <FontAwesomeIcon
-                  icon={faTriangleExclamation}
-                  style={{ color: "#fa0000" }}
-                />
-                <div>{alertText}</div>
-              </div>
-            ) : null}
+            <div className="profile-wrapper   container-fluid">
+              {/* ALERT */}
+              {alert ? (
+                <div
+                  className="alert alert-danger d-flex align-items-center"
+                  role="alert"
+                >
+                  <FontAwesomeIcon
+                    icon={faTriangleExclamation}
+                    style={{ color: "#fa0000" }}
+                  />
+                  <div>{alertText}</div>
+                </div>
+              ) : null}
 
-            {/* ALERT END*/}
-            <div className="row">
-              <div className="col-12 col-md-6">
-                <p>Usuario:</p>
-                {edit ? (
-                  <input
-                    required
-                    onChange={(e) => {
-                      setUsername(e.target.value);
-                    }}
-                    value={username}
-                    type="text"
-                    className="form-control"
-                    id="username"
-                    placeholder={data.user_name}
-                  />
-                ) : (
-                  <p className="info">{data.user_name}</p>
-                )}
-              </div>
-              <div className="col-12 col-md-6">
-                <p>Email:</p>
-                {edit ? (
-                  <input
-                    required
-                    onChange={(e) => {
-                      setEmail(e.target.value);
-                    }}
-                    value={email}
-                    type="email"
-                    className="form-control"
-                    id="email"
-                    placeholder={data.email}
-                  />
-                ) : (
-                  <p className="info">{data.email}</p>
-                )}
-              </div>
-            </div>
-            <hr />
-            <div className="row">
-              <div className="col-12 col-md-6">
-                <p>Nombre:</p>
-                {edit ? (
-                  <input
-                    required
-                    onChange={(e) => {
-                      setName(e.target.value);
-                    }}
-                    value={name}
-                    type="text"
-                    className="form-control"
-                    id="name"
-                    placeholder={data.name}
-                  />
-                ) : (
-                  <p className="info">{data.name}</p>
-                )}
-              </div>
-              <div className="col-12 col-md-6">
-                <p>Apellidos:</p>
-                {edit ? (
-                  <input
-                    required
-                    onChange={(e) => {
-                      setSubname(e.target.value);
-                    }}
-                    value={subname}
-                    type="text"
-                    className="form-control"
-                    id="subname"
-                    placeholder={data.subname}
-                  />
-                ) : (
-                  <p className="info">{data.subname}</p>
-                )}
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-12 col-md-6">
-                <p>DNI:</p>
-                {edit ? (
-                  <input
-                    required
-                    onChange={(e) => {
-                      setDni(e.target.value);
-                    }}
-                    value={dni}
-                    type="text"
-                    className="form-control"
-                    id="dni"
-                    placeholder={data.dni}
-                  />
-                ) : (
-                  <p className="info">{data.dni}</p>
-                )}
-              </div>
-              <div className="col-12 col-md-6">
-                <p>Teléfono:</p>
-                {edit ? (
-                  <input
-                    required
-                    onChange={(e) => {
-                      setPhone(e.target.value);
-                    }}
-                    value={phone}
-                    type="tel"
-                    className="form-control"
-                    id="phone"
-                    placeholder={data.phone}
-                  />
-                ) : (
-                  <p className="info">{data.phone}</p>
-                )}
-              </div>
-            </div>
-            {!edit && (
-              <>
-                <div className="row">
-                  <div className="col-12">
-                    <p>Rol:</p>
-                    <p className="info">
-                      {data.role === "User"
-                        ? "Usuario"
-                        : data.role === "Manager"
-                        ? "Manager"
-                        : "Administrador"}
-                    </p>
-                  </div>
-                  <div className="col-6"></div>
+              {/* ALERT END*/}
+              <div className="row">
+                <div className="col-12 col-md-6">
+                  <p>Usuario:</p>
+                  {edit ? (
+                    <input
+                      required
+                      onChange={(e) => {
+                        setUsername(e.target.value);
+                      }}
+                      value={username}
+                      type="text"
+                      className="form-control"
+                      id="username"
+                      placeholder={data.user_name}
+                    />
+                  ) : (
+                    <p className="info">{data.user_name}</p>
+                  )}
                 </div>
-                <hr />
-
-                <div className="row">
-                  <div className="col-12 col-md-6">
-                    <p>Género:</p>
-                    <p className="info">
-                      {data.sexo === null ? "-" : data.sexo}
-                    </p>
-                  </div>
-                  <div className="col-12 col-md-6">
-                    <p>Fecha Nacimiento:</p>
-                    <p className="info">
-                      {data.fecha_nacimiento === null ||
-                      data.fecha_nacimiento === "None"
-                        ? "-"
-                        : data.fecha_nacimiento}
-                    </p>
-                  </div>
-                  <div className="col-6"></div>
+                <div className="col-12 col-md-6">
+                  <p>Email:</p>
+                  {edit ? (
+                    <input
+                      required
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                      }}
+                      value={email}
+                      type="email"
+                      className="form-control"
+                      id="email"
+                      placeholder={data.email}
+                    />
+                  ) : (
+                    <p className="info">{data.email}</p>
+                  )}
                 </div>
-                <div className="row">
-                  <div className="col-6">
-                    <p>Equipo:</p>
-                    <p className="info">
-                      {data.equipo === null ? "-" : data.team?.name}
-                    </p>
-                  </div>{" "}
-                  <div className="col-12 col-md-6">
-                    <p>Club:</p>
-                    <p className="info">
-                      {data.club === null ? "-" : data.team?.club.name}
-                    </p>
-                  </div>
-                  <div className="col-12 col-md-6"></div>
+              </div>
+              <hr />
+              <div className="row">
+                <div className="col-12 col-md-6">
+                  <p>Nombre:</p>
+                  {edit ? (
+                    <input
+                      required
+                      onChange={(e) => {
+                        setName(e.target.value);
+                      }}
+                      value={name}
+                      type="text"
+                      className="form-control"
+                      id="name"
+                      placeholder={data.name}
+                    />
+                  ) : (
+                    <p className="info">{data.name}</p>
+                  )}
                 </div>
-                <div className="row">
-                  <div className="col-12 col-md-6">
-                    <p>Licencia:</p>
-                    <p className="info">
-                      {data.licencia === null ? "-" : data.licencia}
-                    </p>
-                  </div>{" "}
-                  <div className="col-12 col-md-6">
-                    <p>Federado:</p>
-                    <p className="info">
-                      {data.federado === null ? "-" : data.federado}
-                    </p>
-                  </div>
-                  <div className="col-12 col-md-6"></div>
+                <div className="col-12 col-md-6">
+                  <p>Apellidos:</p>
+                  {edit ? (
+                    <input
+                      required
+                      onChange={(e) => {
+                        setSubname(e.target.value);
+                      }}
+                      value={subname}
+                      type="text"
+                      className="form-control"
+                      id="subname"
+                      placeholder={data.subname}
+                    />
+                  ) : (
+                    <p className="info">{data.subname}</p>
+                  )}
                 </div>
-              </>
-            )}
-
-            <hr />
-            <div className="footer-profile">
-              {edit ? (
+              </div>
+              <div className="row">
+                <div className="col-12 col-md-6">
+                  <p>DNI:</p>
+                  {edit ? (
+                    <input
+                      required
+                      onChange={(e) => {
+                        setDni(e.target.value);
+                      }}
+                      value={dni}
+                      type="text"
+                      className="form-control"
+                      id="dni"
+                      placeholder={data.dni}
+                    />
+                  ) : (
+                    <p className="info">{data.dni}</p>
+                  )}
+                </div>
+                <div className="col-12 col-md-6">
+                  <p>Teléfono:</p>
+                  {edit ? (
+                    <input
+                      required
+                      onChange={(e) => {
+                        setPhone(e.target.value);
+                      }}
+                      value={phone}
+                      type="tel"
+                      className="form-control"
+                      id="phone"
+                      placeholder={data.phone}
+                    />
+                  ) : (
+                    <p className="info">{data.phone}</p>
+                  )}
+                </div>
+              </div>
+              {!edit && (
                 <>
-                  <button
-                    onClick={() => {
-                      handleSubmit();
-                    }}
-                    type="button"
-                    className="accept btn btn-light"
-                  >
-                    <FontAwesomeIcon icon={faCheck} />
-                  </button>
+                  <div className="row">
+                    <div className="col-12">
+                      <p>Rol:</p>
+                      <p className="info">
+                        {data.role === "User"
+                          ? "Usuario"
+                          : data.role === "Manager"
+                          ? "Manager"
+                          : "Administrador"}
+                      </p>
+                    </div>
+                    <div className="col-6"></div>
+                  </div>
+                  <hr />
+
+                  <div className="row">
+                    <div className="col-12 col-md-6">
+                      <p>Género:</p>
+                      <p className="info">
+                        {data.gender === null ? "-" : data.gender}
+                      </p>
+                    </div>
+                    <div className="col-12 col-md-6">
+                      <p>Fecha Nacimiento:</p>
+                      <p className="info">
+                        {data.date === null || data.date === "None"
+                          ? "-"
+                          : data.date}
+                      </p>
+                    </div>
+                    <div className="col-6"></div>
+                  </div>
+                  <div className="row">
+                    <div className="col-6">
+                      <p>Equipo:</p>
+                      <p className="info">
+                        {data.team === null ? "-" : data.team.name}
+                      </p>
+                    </div>{" "}
+                    <div className="col-12 col-md-6">
+                      <p>Club:</p>
+                      <p className="info">
+                        {data.team === null ? "-" : data.team.club.name}
+                      </p>
+                    </div>
+                    <div className="col-12 col-md-6"></div>
+                  </div>
+                  <div className="row">
+                    <div className="col-12 col-md-6">
+                      <p>Licencia:</p>
+                      <p className="info">
+                        {data.license === null ? "-" : data.license}
+                      </p>
+                    </div>{" "}
+                    <div className="col-12 col-md-6">
+                      <p>Federado:</p>
+                      <p className="info">
+                        {data.federated === null ? "-" : data.federated}
+                      </p>
+                    </div>
+                    <div className="col-12 col-md-6"></div>
+                  </div>
+                </>
+              )}
+
+              <hr />
+              <div className="footer-profile">
+                {edit ? (
+                  <>
+                    <button
+                      onClick={() => {
+                        handleSubmit();
+                      }}
+                      type="button"
+                      className="accept btn btn-light"
+                    >
+                      <FontAwesomeIcon icon={faCheck} />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setEdit(!edit);
+                      }}
+                      type="button"
+                      className="cancel btn btn-light"
+                    >
+                      <FontAwesomeIcon icon={faXmark} />
+                    </button>
+                  </>
+                ) : (
                   <button
                     onClick={() => {
                       setEdit(!edit);
                     }}
                     type="button"
-                    className="cancel btn btn-light"
+                    className="edit btn btn-light"
                   >
-                    <FontAwesomeIcon icon={faXmark} />
+                    Editar
                   </button>
-                </>
-              ) : (
-                <button
-                  onClick={() => {
-                    setEdit(!edit);
-                  }}
-                  type="button"
-                  className="edit btn btn-light"
-                >
-                  Editar
-                </button>
-              )}
+                )}
+              </div>
             </div>
           </div>
         </>
