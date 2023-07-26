@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
 import { useTitle } from "../../hooks/useTitle.jsx";
+import { useDimensions } from "../../hooks/useDimensions.jsx";
 
 import { Context } from "../../store/appContext";
 
@@ -14,6 +15,7 @@ import "../../../styles/formulary.css";
 
 export const Login = () => {
   useTitle("BTXF - Inicio de Sesión");
+  const dimensions = useDimensions();
 
   const navigate = useNavigate();
   //Redirect in case user is logged
@@ -70,7 +72,11 @@ export const Login = () => {
 
   return (
     <div className="page-inside-wb  pt-5 w-25 ">
-      <TitleHero img={login} title={"Iniciar Sesión"} y={"200"} />
+      <TitleHero
+        img={login}
+        title={"Iniciar Sesión"}
+        y={dimensions.width < 1000 ? "0" : "200"}
+      />
       <>
         <div className="form wrapper-formulary page-inside-sideband shadow">
           <form onSubmit={handleFormulary}>

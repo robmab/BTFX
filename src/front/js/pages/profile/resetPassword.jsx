@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
 import { useTitle } from "../../hooks/useTitle.jsx";
+import { useDimensions } from "../../hooks/useDimensions.jsx";
 
 import { Context } from "../../store/appContext";
 
@@ -17,6 +18,7 @@ import "../../../styles/formulary.css";
 
 export const ResetPassword = () => {
   useTitle("BTXF - Recuperar Contraseña");
+  const dimensions = useDimensions();
 
   const [token, setToken] = useState(useParams().token.replaceAll("&", "."));
 
@@ -83,7 +85,7 @@ export const ResetPassword = () => {
         <TitleHero
           img={resetPassword}
           title={"Recuperar Contraseña"}
-          y={"250"}
+          y={dimensions.width < 1000 ? "0" : "250"}
         />
         <div className="form wrapper-formulary page-inside-sideband shadow">
           <form onSubmit={handleFormulary}>

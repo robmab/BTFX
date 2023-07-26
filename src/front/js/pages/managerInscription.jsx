@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
 import { useTitle } from "../hooks/useTitle.jsx";
+import { useDimensions } from "../hooks/useDimensions.jsx";
 
 import { Context } from "../store/appContext";
 
@@ -20,6 +21,7 @@ import tool from "../../img/tool.jpg";
 
 export const ManagerInscription = () => {
   useTitle("BTFX Manager - Inscripciones");
+  const dimensions = useDimensions();
 
   const navigate = useNavigate();
   const dorsalInput = useRef();
@@ -107,7 +109,11 @@ export const ManagerInscription = () => {
 
   return (
     <div className="page-inside-wb config pt-5 w-25">
-      <TitleHero img={inscriptions} title={"Inscripciones"} y={"250"} />
+      <TitleHero
+        img={inscriptions}
+        title={"Inscripciones"}
+        y={dimensions.width < 1000 ? "0" : "250"}
+      />
       {load && (
         <>
           <div className="config-wrapper">

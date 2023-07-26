@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { useTitle } from "../hooks/useTitle.jsx";
+import { useDimensions } from "../hooks/useDimensions.jsx";
 
 import { TitleHero } from "../component/titleHero.jsx";
 import { ClassificationTable } from "../component/Classification/classificationTable.jsx";
@@ -11,6 +12,7 @@ import "../../styles/classification/classification.css";
 
 export const Classification = () => {
   useTitle("BTXF - Clasificación");
+  const dimensions = useDimensions();
   const { store } = useContext(Context);
 
   const [tournament, setTournament] = useState({

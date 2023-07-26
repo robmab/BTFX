@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
 import { useTitle } from "../../hooks/useTitle.jsx";
+import { useDimensions } from "../../hooks/useDimensions.jsx";
 
 import { Context } from "../../store/appContext";
 
@@ -14,6 +15,7 @@ import "../../../styles/formulary.css";
 
 export const Signup = () => {
   useTitle("BTXF - Registro");
+  const dimensions = useDimensions();
 
   const navigate = useNavigate();
   const { store, actions } = useContext(Context);
@@ -118,7 +120,11 @@ export const Signup = () => {
 
   return (
     <div className="page-inside-wb  pt-5 w-25 ">
-      <TitleHero img={signup} title={"Registro"} y={"510"} />
+      <TitleHero
+        img={signup}
+        title={"Registro"}
+        y={dimensions.width < 1160 ? "100" : "510"}
+      />
       <>
         <div className="wrapper-formulary form page-inside-sideband shadow">
           <form onSubmit={handleFormulary}>

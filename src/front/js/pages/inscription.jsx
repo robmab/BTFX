@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect, Fragment } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTitle } from "../hooks/useTitle.jsx";
 import { Context } from "../store/appContext";
+import { useDimensions } from "../hooks/useDimensions.jsx";
 
 import { TitleHero } from "../component/titleHero.jsx";
 import { Alert } from "../component/alert.jsx";
@@ -11,6 +12,7 @@ import "../../styles/formulary.css";
 
 export const Inscription = () => {
   useTitle("BTXF - Inscripción");
+  const dimensions = useDimensions();
 
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
@@ -110,7 +112,11 @@ export const Inscription = () => {
 
   return (
     <div className="page-inside-wb  pt-5 w-25">
-      <TitleHero img={inscription} title={"Inscripción"} y={"330"} />
+      <TitleHero
+        img={inscription}
+        title={"Inscripción"}
+        y={dimensions.width < 1000 ? "0" : "330"}
+      />
       {load && (
         <div className="wrapper-formulary page-inside-sideband shadow">
           <form onSubmit={handleFormulary}>

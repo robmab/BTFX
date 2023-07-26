@@ -1,6 +1,11 @@
+/* .container * {
+  border: 1px solid red;
+} */
+
 .page-inside-jh {
   width: 100% !important;
 }
+
 .container {
   display: flex;
   justify-content: center;
@@ -8,50 +13,73 @@
   max-width: 1200px;
   flex-wrap: wrap;
 }
+@property --myColor1 {
+  syntax: "<color>";
+  initial-value: rgb(255, 255, 255);
+  inherits: false;
+}
+
+@property --myColor2 {
+  syntax: "<color>";
+  initial-value: rgb(250, 250, 250);
+  inherits: false;
+}
 .container .card {
+  border: #ffffff5d 0px solid;
   position: relative;
   width: 320px;
-  height: 440px;
+  height: 430px;
   box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.05),
     inset -5px -5px 5px rgba(255, 255, 255, 0.5),
     5px 5px 5px rgba(0, 0, 0, 0.05), -1px -1px 12px 8px rgba(0, 0, 0, 0.26);
   border-radius: 15px;
   margin: 15px;
-  background: #ebf5fc;
-  transition: background-color 0.5s linear, 0.5s;
+  background: linear-gradient(90deg, var(--myColor1) 80%, var(--myColor2) 110%);
+
+  transition: --myColor1 0.5s, --myColor2 0.5s, box-shadow 0.5s ease-in-out;
+}
+
+.container .card:hover {
+  --myColor1: rgb(34, 34, 34);
+  --myColor2: rgb(255, 5, 5);
 }
 
 .container .card .box {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  right: 20px;
-  bottom: 20px;
-  background: #ebf5fc;
+  border-radius: 15px;
 
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: background-color 0.5s linear, 0.5s;
 }
 
 .container .card .box .content {
+  padding: 0 !important;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: 0.5 linear, background-color 0.5s linear;
 }
 
-.container .card:hover .box,
-.container .card:hover {
-  transform: translateY(-10px);
+.container .content .img {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: end;
 
-  background: linear-gradient(
-    90deg,
-    rgba(32, 13, 14, 1) 20%,
-    rgba(179, 18, 23, 1) 50%
-  );
-  transition: 0.5 linear, background-color 0.5s linear;
+  border-radius: 15px 15px 0 0;
+
+  height: 12em;
+  z-index: 0;
+}
+
+.container .content .content-text {
+  display: flex;
+  flex-direction: column;
+  padding-top: 2em;
+}
+
+.container .card:hover {
+  box-shadow: none !important;
 }
 
 .container .card .box .content {
@@ -63,18 +91,23 @@
   top: -10px;
   right: 30px;
   font-size: 8em;
-  color: rgba(0, 0, 0, 0.05);
-  transition: 0.7s ease-in-out;
+  color: rgba(0, 0, 0, 0.405);
+
   pointer-events: none;
+  transition: color 0.5s ease-in-out;
 }
 .container .card:hover .box .content h2 {
-  color: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.699);
+  z-index: 3;
 }
 .container .card .box .content h3 {
   font-size: 1.8em;
-  color: #777;
+  color: #ffffff;
+  text-shadow: 2px 2px 2px black;
   z-index: 1;
-  transition: 0.7s ease-in-out;
+
+  background-color: rgba(48, 47, 47, 0.434);
+  backdrop-filter: blur(1px);
 }
 
 .container .card .box .content p {
@@ -82,11 +115,13 @@
   font-weight: 300;
   color: #777;
   z-index: 1;
-  transition: 0.6s ease-in-out;
 }
-.container .card:hover .box .content h3,
+
 .container .card:hover .box .content p {
   color: #fff;
+}
+.row > * {
+  padding-left: 0 !important;
 }
 .container .card .box .content a {
   display: inline-block;

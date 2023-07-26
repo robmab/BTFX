@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
 import { useTitle } from "../../hooks/useTitle.jsx";
+import { useDimensions } from "../../hooks/useDimensions.jsx";
 import { Context } from "../../store/appContext";
 
 import "../../../styles/profile.css";
@@ -16,6 +17,7 @@ import {
 
 export const Profile = () => {
   useTitle("BTXF - Perfil");
+  const dimensions = useDimensions();
 
   const navigate = useNavigate();
   const { store, actions } = useContext(Context);
@@ -80,7 +82,11 @@ export const Profile = () => {
     <div className="page-inside-wb profile pt-5 w-25">
       {load && (
         <>
-          <TitleHero img={profile} title={"Perfil"} y={"400"} />
+          <TitleHero
+            img={profile}
+            title={"Perfil"}
+            y={dimensions.width < 1160 ? "100" : "400"}
+          />
 
           <div
             className="page-inside-sideband shadow mt-4"

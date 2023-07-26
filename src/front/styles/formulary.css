@@ -8,7 +8,7 @@
 }
 
 .wrapper-formulary form {
-  width: 22.5em;
+  width: 20.5em;
 }
 
 /* HEADER */
@@ -25,7 +25,7 @@
 }
 .subtitle-submit > * {
   line-height: 1em;
-  font-size: 17px !important;
+  font-size: 15px !important;
 }
 .wrapper-formulary h6 {
   font-size: 15px;

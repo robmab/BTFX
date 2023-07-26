@@ -5,6 +5,7 @@ import { ModalLogin } from "./modalLogin.jsx";
 
 import logo from "../../img/BTXF-notext.png";
 import "../../styles/navbar.css";
+import logoWhite from "../../img/logo-white.png";
 
 import { useDimensions } from "../hooks/useDimensions.jsx";
 import { useScroll } from "../hooks/useScroll.jsx";
@@ -62,7 +63,12 @@ export const Navbar = () => {
           className="navbar-brand"
           to={"/"}
         >
-          <img width="80px" src={logo} alt="" />
+          <img
+            width={scroll === 0 ? "80px" : "55px"}
+            src={scroll === 0 ? logoWhite : logo}
+            alt=""
+            style={{ transition: "0.2s linear" }}
+          />
         </Link>
 
         {dimensions.width < 1000 ? (

@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
 import { useTitle } from "../hooks/useTitle.jsx";
+import { useDimensions } from "../hooks/useDimensions.jsx";
 
 import { Context } from "../store/appContext";
 
@@ -18,6 +19,7 @@ import {
 
 export const AdminTrials = () => {
   useTitle("BTFX Admin - Pruebas");
+  const dimensions = useDimensions();
 
   const navigate = useNavigate();
 
@@ -68,7 +70,11 @@ export const AdminTrials = () => {
 
   return (
     <div className="page-inside-wb config pt-5 w-25">
-      <TitleHero img={adminTrials} title={"Resultados Ciclistas"} y={"270"} />
+      <TitleHero
+        img={adminTrials}
+        title={"Resultados Ciclistas"}
+        y={dimensions.width < 1000 ? "0" : "270"}
+      />
       {load && (
         <>
           <div className="config-wrapper">
