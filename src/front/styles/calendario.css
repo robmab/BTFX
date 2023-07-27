@@ -47,10 +47,6 @@
 
 .container .card .box {
   border-radius: 15px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .container .card .box .content {
