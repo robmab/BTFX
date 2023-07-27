@@ -118,9 +118,13 @@ export const ClassificationTable = ({
                     <td data-title="Equipo">{item.user.team?.name}</td>
                     <td data-title="Categoría">{item.user.category}</td>
                     {Object.entries(event).length > 0 && (
-                      <td data-title="Tiempo">{item.time}</td>
+                      <td data-title="Tiempo">
+                        {item.time === "None" ? "-" : item.time}
+                      </td>
                     )}
-                    <td data-title="Puntos">{item.points}</td>
+                    <td data-title="Puntos">
+                      {item.points === null ? "-" : item.points}
+                    </td>
                   </tr>
                 );
               })}
