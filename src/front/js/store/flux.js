@@ -251,9 +251,8 @@ const getState = ({ getStore, getActions, setStore }) => {
           if (data.category !== null && data.team !== null) {
             store.inscriptions = store.inscriptions.map((x, y) => {
               if (x.user.id === data.user) {
-                x.user.category = {};
                 x.user.team = {};
-                x.user.category.name = data.category;
+                x.user.category = data.category;
                 x.user.team.name = data.team;
                 console.log(data.team);
               }

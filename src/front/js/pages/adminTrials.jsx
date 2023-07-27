@@ -56,15 +56,16 @@ export const AdminTrials = () => {
 
     const resp = await actions.registerEvent(data);
 
-    const auxT = time;
-    const auxP = points;
-    auxT[index] = "";
-    auxP[index] = "";
-    setTime(auxT);
-    setPoints(auxP);
     if (resp === 200) {
       actions.firstLoad();
-      actions.loadTrials();
+      const resp = await actions.loadTrials();
+
+      const auxT = time;
+      const auxP = points;
+      auxT[index] = "";
+      auxP[index] = "";
+      setTime(auxT);
+      setPoints(auxP);
     }
   };
 
