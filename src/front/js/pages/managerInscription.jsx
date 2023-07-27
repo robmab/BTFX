@@ -161,14 +161,14 @@ export const ManagerInscription = () => {
                           value={category[index]}
                           style={{ width: "8em" }}
                           name="select"
-                          defaultValue={item.user.category.name}
+                          defaultValue={item.user.category}
                         >
-                          <option value={item.user.category.name}>
-                            {item.user.category.name}
+                          <option value={item.user.category}>
+                            {item.user.category}
                           </option>
                           {store.categories?.map((x, y) => (
                             <>
-                              {x.name !== item.user.category.name && (
+                              {x.name !== item.user.category && (
                                 <option key={y} value={x.name}>
                                   {x.name}
                                 </option>
