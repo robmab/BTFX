@@ -18,6 +18,6 @@ Esta página web ha sido diseñada tanto tanto para escritorio, como para tablet
 
 ## Tecnologías:
 - Frontend
-React, Javascript, HTML, CSS, Bootstrap
+> React, Javascript, HTML, CSS, Bootstrap
 - Backend
-Python, Flask, Flask SQLAlchemy
+> Python, Flask, Flask SQLAlchemy
