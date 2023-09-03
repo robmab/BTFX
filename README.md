@@ -25,7 +25,7 @@ Esta página web ha sido diseñada tanto para escritorio, como para tablet/móvi
 > Python, Flask, Flask SQLAlchemy, JWT, PostgreSQL
 
 
-# English
+## English
 
 BTXF is a platform where anyone can register to the various cycling events available for it, while viewing the results of the tournaments. It also has an administrator panel where anyone with the role of manager can manage registrations to assign bibs, as well as record the results of the events.
 
