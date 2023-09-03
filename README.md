@@ -14,11 +14,9 @@ BTXF es una plataforma donde cualquier persona puede inscribirse a las distintas
 - **Políticas de uso, privacidad** y **aviso legal**
 
 ## Responsive:
-![image](https://github.com/robmab/Proyect-BTFX/assets/56076087/27458965-c94d-431a-b1c0-5f6794254a77)
-![image](https://github.com/robmab/Proyect-BTFX/assets/56076087/e7d6ba5e-7ba1-431c-aa92-d3dd859ad310)
-
-
 Esta página web ha sido diseñada tanto para escritorio, como para tablet/móvil.
+
+![este](https://github.com/robmab/Proyect-BTFX/assets/56076087/34314df2-d6bc-4ff2-8762-4a48a94bdbc5)
 
 ## Tecnologías:
 - Frontend
