@@ -34,7 +34,7 @@ BTXF is a platform where anyone can register to the various cycling events avail
 - List of **cycling events** with description available for **registration** of registered users, as well as a registration form for them.
 - View of the **classification** of all tournaments and events corresponding to it, with a **dynamic filter system** allowing to search by category if desired.
 - Complete system for users, allowing both **registration, login and profile viewing/editing**. Built-in **Password recovery** system via email as well.
-- Control panel** for *managers* and *administrators*, allowing the **management of incoming user registrations**, to assign the team, category and bib number. It will only allow to assign bibs available for that race.
+- **Control panel** for *managers* and *administrators*, allowing the **management of incoming user registrations**, to assign the team, category and bib number. It will only allow to assign bibs available for that race.
   - For *administrator* users only - will have an option to **record race results**, both time and score, which will be instantly reflected in the rankings view.
 - **Policy of use, privacy** and **legal notice**.
 
