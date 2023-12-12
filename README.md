@@ -18,7 +18,7 @@ Esta página web ha sido diseñada tanto para escritorio, como para tablet/móvi
 
 ![este](https://github.com/robmab/Proyect-BTFX/assets/56076087/34314df2-d6bc-4ff2-8762-4a48a94bdbc5)
 
-## Tecnologías
+## Technologies
 - Frontend
 > React, Javascript, HTML, CSS, Bootstrap, Axios
 - Backend
